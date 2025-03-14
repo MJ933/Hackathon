@@ -1,0 +1,15 @@
+E:\My Projects\Hackathon\BusinessLayer\bin\Debug\net8.0\BusinessLayer.deps.json
+E:\My Projects\Hackathon\BusinessLayer\bin\Debug\net8.0\BusinessLayer.dll
+E:\My Projects\Hackathon\BusinessLayer\bin\Debug\net8.0\BusinessLayer.pdb
+E:\My Projects\Hackathon\BusinessLayer\bin\Debug\net8.0\DataAccessLayer.dll
+E:\My Projects\Hackathon\BusinessLayer\bin\Debug\net8.0\DataAccessLayer.pdb
+E:\My Projects\Hackathon\BusinessLayer\obj\Debug\net8.0\BusinessLayer.csproj.AssemblyReference.cache
+E:\My Projects\Hackathon\BusinessLayer\obj\Debug\net8.0\BusinessLayer.GeneratedMSBuildEditorConfig.editorconfig
+E:\My Projects\Hackathon\BusinessLayer\obj\Debug\net8.0\BusinessLayer.AssemblyInfoInputs.cache
+E:\My Projects\Hackathon\BusinessLayer\obj\Debug\net8.0\BusinessLayer.AssemblyInfo.cs
+E:\My Projects\Hackathon\BusinessLayer\obj\Debug\net8.0\BusinessLayer.csproj.CoreCompileInputs.cache
+E:\My Projects\Hackathon\BusinessLayer\obj\Debug\net8.0\Business.EA331CBA.Up2Date
+E:\My Projects\Hackathon\BusinessLayer\obj\Debug\net8.0\BusinessLayer.dll
+E:\My Projects\Hackathon\BusinessLayer\obj\Debug\net8.0\refint\BusinessLayer.dll
+E:\My Projects\Hackathon\BusinessLayer\obj\Debug\net8.0\BusinessLayer.pdb
+E:\My Projects\Hackathon\BusinessLayer\obj\Debug\net8.0\ref\BusinessLayer.dll
