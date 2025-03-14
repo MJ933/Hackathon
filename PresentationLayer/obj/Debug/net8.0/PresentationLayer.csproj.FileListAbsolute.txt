@@ -58,3 +58,4 @@ E:\My Projects\Hackathon\PresentationLayer\bin\Debug\net8.0\BusinessLayer.dll
 E:\My Projects\Hackathon\PresentationLayer\bin\Debug\net8.0\DataAccessLayer.dll
 E:\My Projects\Hackathon\PresentationLayer\bin\Debug\net8.0\BusinessLayer.pdb
 E:\My Projects\Hackathon\PresentationLayer\bin\Debug\net8.0\DataAccessLayer.pdb
+E:\My Projects\Hackathon\PresentationLayer\obj\Debug\net8.0\PresentationLayer.sourcelink.json

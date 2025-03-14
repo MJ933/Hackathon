@@ -10,3 +10,4 @@ E:\My Projects\Hackathon\DataAccessLayer\obj\Debug\net8.0\DataAccessLayer.dll
 E:\My Projects\Hackathon\DataAccessLayer\obj\Debug\net8.0\refint\DataAccessLayer.dll
 E:\My Projects\Hackathon\DataAccessLayer\obj\Debug\net8.0\DataAccessLayer.pdb
 E:\My Projects\Hackathon\DataAccessLayer\obj\Debug\net8.0\ref\DataAccessLayer.dll
+E:\My Projects\Hackathon\DataAccessLayer\obj\Debug\net8.0\DataAccessLayer.sourcelink.json

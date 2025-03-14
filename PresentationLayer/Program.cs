@@ -5,7 +5,6 @@ using Microsoft.Extensions.Configuration;
 using BusinessLayer;
 
 var builder = WebApplication.CreateBuilder(args);
-DataAccessSettings.Initialize(builder.Configuration);
 // Add services to the container.
 
 builder.Services.AddControllers();
@@ -21,6 +20,10 @@ builder.Services.AddNpgsqlDataSource(
 
 builder.Services.AddScoped<IUsersRepository, UsersRepository>();
 builder.Services.AddScoped<IUsersService, UsersService>();
+builder.Services.AddScoped<ISkillsRepository, SkillsRepository>();
+builder.Services.AddScoped<ISkillsService, SkillsService>();
+
+
 
 
 builder.Services.AddEndpointsApiExplorer();
