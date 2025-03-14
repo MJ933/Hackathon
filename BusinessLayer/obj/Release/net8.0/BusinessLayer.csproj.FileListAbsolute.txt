@@ -13,3 +13,4 @@ E:\My Projects\Hackathon\BusinessLayer\obj\Release\net8.0\BusinessLayer.dll
 E:\My Projects\Hackathon\BusinessLayer\obj\Release\net8.0\refint\BusinessLayer.dll
 E:\My Projects\Hackathon\BusinessLayer\obj\Release\net8.0\BusinessLayer.pdb
 E:\My Projects\Hackathon\BusinessLayer\obj\Release\net8.0\ref\BusinessLayer.dll
+E:\My Projects\Hackathon\BusinessLayer\obj\Release\net8.0\BusinessLayer.sourcelink.json

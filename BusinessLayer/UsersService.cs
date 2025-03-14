@@ -11,15 +11,14 @@ namespace BusinessLayer
     {
         Task<List<UserDto>> GetAllUsersAsync();
         Task<UserDto?> GetUserByUserIDAsync(int userID);
-        Task<bool> AddNewUserAsync();
-        Task<bool> UpdateUserAsync();
+        Task<int> AddNewUserAsync(UserDto user);
+        Task<bool> UpdateUserAsync(UserDto user);
         Task<bool> DeleteUserAsync(int userID);
         Task<bool> IsUserExistsByUserIDAsync(int userID);
-        public UserDto User { get; set; }
+        //public UserDto User { get; set; }
     }
     public class UsersService : IUsersService
     {
-        public UserDto User { get; set; }
         private readonly IUsersRepository _userRepository;
         public UsersService(IUsersRepository userRepository)
         {
@@ -35,20 +34,13 @@ namespace BusinessLayer
             return await _userRepository.GetUserByUserIDAsync(userID);
         }
 
-        public async Task<bool> AddNewUserAsync()
+        public async Task<int> AddNewUserAsync(UserDto user) =>
+        await _userRepository.AddNewUserAsync(user);
+
+
+        public async Task<bool> UpdateUserAsync(UserDto user)
         {
-            int InsertedUserID = await _userRepository.AddNewUserAsync(this.User);
-            if (InsertedUserID > 0)
-            {
-                this.User = new UserDto(InsertedUserID, this.User.Name, this.User.Email,
-                    this.User.PasswordHash, this.User.Bio, this.User.CreatedAt);
-                return InsertedUserID > 0;
-            }
-            return false;
-        }
-        public async Task<bool> UpdateUserAsync()
-        {
-            return await _userRepository.UpdateUserAsync(this.User);
+            return await _userRepository.UpdateUserAsync(user);
         }
         public async Task<bool> DeleteUserAsync(int userID)
         {

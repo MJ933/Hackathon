@@ -1,14 +1,12 @@
-﻿// PresentationLayer/Controllers/SkillsController.cs
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using BusinessLayer;
 using DataAccessLayer;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
 namespace PresentationLayer.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/Skills")]
     [ApiController]
     public class SkillsController : ControllerBase
     {
@@ -21,97 +19,131 @@ namespace PresentationLayer.Controllers
 
         [HttpGet("GetAll", Name = "GetAllSkills")]
         [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<List<SkillDto>>> GetAllSkills()
         {
             var skills = await _skillsService.GetAllSkillsAsync();
-            return Ok(skills);
+            return skills.Count == 0
+                ? NotFound("No skills found in the system")
+                : Ok(new { Message = "Skills retrieved successfully", Data = skills });
         }
 
-        [HttpGet("GetSkillBy/{id}")]
+        [HttpGet("GetById/{id}", Name = "GetSkillById")]
         [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<SkillDto>> GetSkillById(int id)
         {
+            if (id < 1)
+                return BadRequest("Invalid skill ID format");
+
             var skill = await _skillsService.GetSkillByIdAsync(id);
-            return skill != null ? Ok(skill) : NotFound();
+            return skill == null
+                ? NotFound($"Skill with ID {id} not found")
+                : Ok(new { Message = "Skill retrieved successfully", Data = skill });
         }
 
-        [HttpPost("CreateSkill")]
+        [HttpPost("Create", Name = "CreateSkill")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult<SkillDto>> CreateSkill([FromBody] SkillDto skillDto)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
-            _skillsService.Skill = skillDto;
-            if (!await _skillsService.AddSkillAsync())
+
+            int newSkillId = await _skillsService.AddSkillAsync(skillDto);
+            if (newSkillId <= 0)
                 return BadRequest("Failed to create skill");
-            skillDto = new SkillDto(_skillsService.Skill.Id, skillDto.Name);
-            return CreatedAtAction(nameof(GetSkillById), new { id = _skillsService.Skill.Id }, skillDto);
+
+            skillDto = new SkillDto(newSkillId, skillDto.Name);
+            return CreatedAtRoute("GetSkillById",
+                new { id = newSkillId },
+                new { Message = "Skill created successfully", Data = skillDto });
         }
 
-        [HttpPut("UpdateSkill/{id}")]
+        [HttpPut("Update/{id}", Name = "UpdateSkill")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult> UpdateSkill(int id, [FromBody] SkillDto skillDto)
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<ActionResult<SkillDto>> UpdateSkill(int id, [FromBody] SkillDto skillDto)
         {
-            if (!ModelState.IsValid)
-                return BadRequest();
-            _skillsService.Skill = new SkillDto(id, skillDto.Name);
-            var success = await _skillsService.UpdateSkillAsync();
-            return success ? Ok( _skillsService.Skill) : BadRequest("Update failed");
+            if (id < 1 || !ModelState.IsValid)
+                return BadRequest("Invalid request parameters");
+            if (await _skillsService.GetSkillByIdAsync(id) == null)
+                return NotFound($"Skill {id} does not exist");
+            skillDto = new SkillDto(id, skillDto.Name);
+            var success = await _skillsService.UpdateSkillAsync(skillDto);
+            return success
+                ? Ok(new { Message = "Skill updated successfully", Data = skillDto })
+                : NotFound($"Skill {id} not found");
         }
 
-        [HttpDelete("DeleteSkill/{id}")]
-        [ProducesResponseType(StatusCodes.Status204NoContent)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [HttpDelete("Delete/{id}", Name = "DeleteSkill")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult> DeleteSkill(int id)
         {
+            if (id < 1)
+                return BadRequest("Invalid skill ID format");
+
             var success = await _skillsService.DeleteSkillAsync(id);
-            return success ? Ok("Skill Deleted successfully") : NotFound("Failed to remove the skill");
+            return success
+                ? Ok($"Skill {id} deleted successfully")
+                : NotFound($"Skill {id} not found");
         }
 
-        [HttpPost("AddUserSkill/{userId}/{skillId}")]
+        [HttpPost("AddUserSkill/{userId}/{skillId}", Name = "AddUserSkill")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult> AddUserSkill(int userId, int skillId)
         {
             if (userId < 1 || skillId < 1)
-                return BadRequest("Invalid IDs");
+                return BadRequest("Invalid user or skill ID");
 
             var success = await _skillsService.AddUserSkillAsync(userId, skillId);
-            return success ? Ok("skill has been Added successfully") : BadRequest("Failed to add skill to user");
+            return success
+                ? Ok("Skill added to user successfully")
+                : BadRequest("Failed to add skill to user");
         }
 
-        [HttpDelete("RemoveUserSkill/{userId}/{skillId}")]
-        [ProducesResponseType(StatusCodes.Status204NoContent)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [HttpDelete("RemoveUserSkill/{userId}/{skillId}", Name = "RemoveUserSkill")]
         [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult> RemoveUserSkill(int userId, int skillId)
         {
             if (userId < 1 || skillId < 1)
-                return BadRequest("Invalid IDs");
+                return BadRequest("Invalid user or skill ID");
 
             var success = await _skillsService.RemoveUserSkillAsync(userId, skillId);
-            return success ? Ok("Skill has been removed correctly.") : NotFound("Failed to remove the skill");
+            return success
+                ? Ok("Skill removed from user successfully")
+                : NotFound("User-skill association not found");
         }
 
-        [HttpGet("GetSkillsByUser/{userId}")]
+        [HttpGet("GetUserSkills/{userId}", Name = "GetUserSkills")]
         [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult<List<SkillDto>>> GetSkillsByUser(int userId)
         {
+            if (userId < 1)
+                return BadRequest("Invalid user ID");
+
             var skills = await _skillsService.GetSkillsByUserIdAsync(userId);
-            return Ok(skills);
+            return Ok(new { Message = "User skills retrieved successfully", Data = skills });
         }
 
-        [HttpGet("GetUsersBySkill/{skillId}")]
+        [HttpGet("GetSkilledUsers/{skillId}", Name = "GetSkilledUsers")]
         [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult<List<UserDto>>> GetUsersBySkill(int skillId)
         {
+            if (skillId < 1)
+                return BadRequest("Invalid skill ID");
+
             var users = await _skillsService.GetUsersBySkillIdAsync(skillId);
-            return Ok(users);
+            return Ok(new { Message = "Skilled users retrieved successfully", Data = users });
         }
     }
 }

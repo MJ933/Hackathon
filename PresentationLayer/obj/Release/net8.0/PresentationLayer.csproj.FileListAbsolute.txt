@@ -58,3 +58,4 @@ E:\My Projects\Hackathon\PresentationLayer\obj\Release\net8.0\refint\Presentatio
 E:\My Projects\Hackathon\PresentationLayer\obj\Release\net8.0\PresentationLayer.pdb
 E:\My Projects\Hackathon\PresentationLayer\obj\Release\net8.0\PresentationLayer.genruntimeconfig.cache
 E:\My Projects\Hackathon\PresentationLayer\obj\Release\net8.0\ref\PresentationLayer.dll
+E:\My Projects\Hackathon\PresentationLayer\obj\Release\net8.0\PresentationLayer.sourcelink.json

@@ -3,113 +3,102 @@ using DataAccessLayer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace PresentationLayer.Controllers
 {
-    //[Route("api/[controller]")]
     [Route("api/Users")]
-
     [ApiController]
     public class UsersController : ControllerBase
     {
         private readonly IUsersService _userService;
+
         public UsersController(IUsersService userService)
         {
             _userService = userService;
         }
+
         [HttpGet("GetAll", Name = "GetAllUsers")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<ActionResult<IEnumerable<UserDto>>> GetAllUsers()
+        public async Task<ActionResult> GetAllUsers()
         {
-            var usersList = await _userService.GetAllUsersAsync();
-            if (usersList.Count == 0)
-                return NotFound("There are no users in the database!");
-            return Ok(usersList);
+            var users = await _userService.GetAllUsersAsync();
+            return users.Count == 0
+                ? NotFound("No users found in the system")
+                : Ok(new { Message = "Users retrieved successfully", Data = users });
         }
 
-        [HttpGet("GetUserByID/{UserID}", Name = "GetUserByID")]
+        [HttpGet("GetById/{userId}", Name = "GetUserById")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<ActionResult<UserDto>> GetUserByID([FromRoute] int UserID)
+        public async Task<ActionResult> GetUserById(int userId)
         {
-            if (UserID < 1)
-                return BadRequest($"Invalid UserID: {UserID}");
-            var UserDTO = await _userService.GetUserByUserIDAsync(UserID);
-            if (UserDTO == null)
-                return NotFound($"No User found with UserID: {UserID}");
-            return Ok(UserDTO);
+            if (userId < 1)
+                return BadRequest("Invalid user ID format");
+
+            var user = await _userService.GetUserByUserIDAsync(userId);
+            return user == null
+                ? NotFound($"User with ID {userId} not found")
+                : Ok(new { Message = "User retrieved successfully", Data = user });
         }
 
-
-
-
-        [HttpPost("Create", Name = "AddUser")]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [HttpPost("Create", Name = "CreateUser")]
         [ProducesResponseType(StatusCodes.Status201Created)]
-        public async Task<ActionResult<UserDto>> AddUser([FromBody] UserDto newUserDTO)
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult> CreateUser([FromBody] UserDto userDto)
         {
             if (!ModelState.IsValid)
-            {
                 return BadRequest(ModelState);
-            }
+            var newUserID = await _userService.AddNewUserAsync(userDto);
+            if (newUserID < 0)
+                return BadRequest("Failed to create user");
+            userDto = new UserDto(newUserID, userDto.Name, userDto.Email,
+                                   userDto.PasswordHash, userDto.Bio, userDto.CreatedAt); // Ensure ID consistency
 
-            _userService.User = newUserDTO;
-            if (await _userService.AddNewUserAsync())
-            {
-                return CreatedAtRoute("GetUserByID", new { UserID = _userService.User.Id }, _userService.User);
-            }
-            else
-            {
-                return BadRequest("Failed to add the User.");
-            }
+            return CreatedAtRoute("GetUserById",
+                new { userId = newUserID },
+                new { Message = "User created successfully", Data = userDto });
         }
 
-        [HttpPut("Update/{UserID}", Name = "UpdateUserAsync")]
+        [HttpPut("Update/{userId}", Name = "UpdateUser")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<ActionResult<UserDto>> UpdateUser([FromRoute] int UserID, [FromBody] UserDto updatedUserDTO)
+        public async Task<ActionResult> UpdateUser(int userId, [FromBody] UserDto userDto)
         {
-            if (UserID < 1)
-                return BadRequest($"Invalid ID: {UserID}");
-            updatedUserDTO = new UserDto(UserID, updatedUserDTO.Name, updatedUserDTO.Email,
-                     updatedUserDTO.PasswordHash, updatedUserDTO.Bio, updatedUserDTO.CreatedAt);
+            if (userId < 1 || !ModelState.IsValid)
+                return BadRequest("Invalid request parameters");
 
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-            UserDto? oldUserDto = await _userService.GetUserByUserIDAsync(UserID);
-            if (oldUserDto == null)
-                return NotFound($"No User found with ID: {UserID}");
-            _userService.User = updatedUserDTO;
-            if (await _userService.UpdateUserAsync())
-            {
-                return Ok(updatedUserDTO);
-            }
-            else
-            {
-                return BadRequest("Failed to update the User.");
-            }
+            var existingUser = await _userService.GetUserByUserIDAsync(userId);
+            if (existingUser == null)
+                return NotFound($"User {userId} not found");
+
+            userDto = new UserDto(userId, userDto.Name, userDto.Email,
+                                    userDto.PasswordHash, userDto.Bio, userDto.CreatedAt); // Ensure ID consistency
+            if (!await _userService.UpdateUserAsync(userDto))
+                return BadRequest("Update operation failed");
+
+            return Ok(new { Message = "User updated successfully", Data = userDto });
         }
 
-        [HttpDelete("Delete/{UserID}", Name = "DeleteUser")]
+        [HttpDelete("Delete/{userId}", Name = "DeleteUser")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<ActionResult> DeleteUser([FromRoute] int UserID)
+        public async Task<ActionResult> DeleteUser(int userId)
         {
-            if (UserID <= 0)
-                return BadRequest($"Invalid ID: {UserID}");
-            if (!await _userService.IsUserExistsByUserIDAsync(UserID))
-                return NotFound($"No User found with ID: {UserID}");
-            if (await _userService.DeleteUserAsync(UserID))
-                return Ok($"User with ID: {UserID} was deleted successfully.");
-            else
-                return StatusCode(500, "Failed to delete the User.");
+            if (userId < 1)
+                return BadRequest("Invalid user ID format");
+
+            if (!await _userService.IsUserExistsByUserIDAsync(userId))
+                return NotFound($"User {userId} not found");
+
+            if (!await _userService.DeleteUserAsync(userId))
+                return StatusCode(500, "Delete operation failed");
+
+            return Ok(new { Message = $"User {userId} deleted successfully" });
         }
     }
 }
