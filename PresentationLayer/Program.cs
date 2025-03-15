@@ -28,6 +28,8 @@ builder.Services.AddScoped<IConnectionsRepository, ConnectionsRepository>();
 builder.Services.AddScoped<IConnectionsService, ConnectionsService>();
 builder.Services.AddScoped<IMessagesRepository, MessagesRepository>();
 builder.Services.AddScoped<IMessagesService, MessagesService>();
+builder.Services.AddScoped<IRoomsRepository, RoomsRepository>();
+builder.Services.AddScoped<IRoomsService, RoomsService>();
 
 
 

@@ -10,10 +10,12 @@ namespace PresentationLayer.Controllers
     public class MessagesController : ControllerBase
     {
         private readonly IMessagesService _messagesService;
+        private readonly IUsersService _usersService;
 
-        public MessagesController(IMessagesService messagesService)
+        public MessagesController(IMessagesService messagesService, IUsersService usersService)
         {
             _messagesService = messagesService;
+            _usersService = usersService;
         }
 
         [HttpGet("GetAll", Name = "GetAllMessages")]
@@ -65,13 +67,24 @@ namespace PresentationLayer.Controllers
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            if (message.SenderId < 1 || message.ReceiverId < 1)
+            if (message.SenderId < 0 || message.ReceiverId < 0)
                 return BadRequest("Invalid user ID format");
+            // make the receiverId for the user as null if the ReceiverId is 0.
+            if (message.ReceiverId == 0)
+                message = message with { ReceiverId = null };
+
+            // check if the user exist.
+            if (!await _usersService.IsUserExistsByUserIDAsync(message.SenderId))
+                return BadRequest($"User sender Does not exists with userID: {message.SenderId}");
+            // check if the user sender is null and also check if the user sender exist.
+            if (message.ReceiverId != null && !await _usersService.IsUserExistsByUserIDAsync(message.ReceiverId))
+                return BadRequest($"User receiver Does not exists with userID: {message.ReceiverId}");
+
 
             var newMessageId = await _messagesService.AddNewMessageAsync(message);
             if (newMessageId < 0)
                 return BadRequest("Failed to create message");
-
+            // update the message Id with the New Id.
             message = message with { Id = newMessageId };
             return CreatedAtRoute("GetMessageById", new { messageId = message.Id },
                 new { Message = "Message created successfully", Data = message });

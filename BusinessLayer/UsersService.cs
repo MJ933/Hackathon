@@ -14,7 +14,7 @@ namespace BusinessLayer
         Task<int> AddNewUserAsync(UserDto user);
         Task<bool> UpdateUserAsync(UserDto user);
         Task<bool> DeleteUserAsync(int userID);
-        Task<bool> IsUserExistsByUserIDAsync(int userID);
+        Task<bool> IsUserExistsByUserIDAsync(int? userID);
         //public UserDto User { get; set; }
     }
     public class UsersService : IUsersService
@@ -46,7 +46,7 @@ namespace BusinessLayer
         {
             return await _userRepository.DeleteUserAsync(userID);
         }
-        public async Task<bool> IsUserExistsByUserIDAsync(int orderID)
+        public async Task<bool> IsUserExistsByUserIDAsync(int? orderID)
         {
             return await _userRepository.IsUserExistsByUserIDAsync(orderID);
         }

@@ -1,4 +1,5 @@
 ﻿using Dapper;
+using Imagekit.Constant;
 using Microsoft.Extensions.Logging;
 using Npgsql;
 using System.Collections.Generic;
@@ -9,13 +10,15 @@ namespace DataAccessLayer
 {
     public record MessageDto
     {
-        public MessageDto(int id, int senderId, int receiverId, string content, DateTime createdAt)
+        public MessageDto(int id, int senderId, int? receiverId, string content, DateTime createdAt, int? roomId)
         {
             Id = id;
             SenderId = senderId;
             ReceiverId = receiverId;
             Content = content;
             CreatedAt = createdAt;
+            RoomId = roomId;
+
         }
 
         [Key]
@@ -24,8 +27,11 @@ namespace DataAccessLayer
         [Required(ErrorMessage = "Sender ID is required")]
         public int SenderId { get; init; }
 
-        [Required(ErrorMessage = "Receiver ID is required")]
-        public int ReceiverId { get; init; }
+        //[Range(0, int.MaxValue, ErrorMessage = "Receiver ID should be greater or equal to 0")]
+        public int? ReceiverId { get; init; }
+
+        //[Range(0, int.MaxValue, ErrorMessage = "Room ID should be greater or equal to 0")]
+        public int? RoomId { get; init; }
 
         [Required(ErrorMessage = "Content is required")]
         public string Content { get; init; } = string.Empty;
@@ -111,12 +117,9 @@ namespace DataAccessLayer
         {
             try
             {
-                if (!await IsUserExistsAsync(message.SenderId) || !await IsUserExistsAsync(message.ReceiverId))
-                    return -1;
-
                 const string sql = @"
-                    INSERT INTO Messages (SenderId, ReceiverId, Content, CreatedAt)
-                    VALUES (@SenderId, @ReceiverId, @Content, @CreatedAt)
+                    INSERT INTO Messages (SenderId, ReceiverId, RoomId, Content, CreatedAt)
+                    VALUES (@SenderId, @ReceiverId,@RoomId, @Content, @CreatedAt)
                     RETURNING Id";
                 await using var conn = await _dataSource.OpenConnectionAsync();
                 var InsertedId = await conn.ExecuteScalarAsync<int>(sql, message);
@@ -179,7 +182,7 @@ namespace DataAccessLayer
             }
         }
 
-        private async Task<bool> IsUserExistsAsync(int userId)
+        public async Task<bool> IsUserExistsAsync(int? userId)
         {
             try
             {

@@ -57,7 +57,7 @@ namespace DataAccessLayer
         Task<int> AddNewUserAsync(UserDto user);
         Task<bool> UpdateUserAsync(UserDto user);
         Task<bool> DeleteUserAsync(int userID);
-        Task<bool> IsUserExistsByUserIDAsync(int userID);
+        Task<bool> IsUserExistsByUserIDAsync(int? userID);
     }
     public class UsersRepository : IUsersRepository
     {
@@ -183,7 +183,7 @@ namespace DataAccessLayer
             }
         }
 
-        public async Task<bool> IsUserExistsByUserIDAsync(int UserID)
+        public async Task<bool> IsUserExistsByUserIDAsync(int? UserID)
         {
             try
             {
