@@ -8,6 +8,21 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer
 {
+    public record SkillDto
+    {
+        public SkillDto(int id, string name)
+        {
+            Id = id;
+            Name = name;
+        }
+
+        [Key]
+        public int Id { get; init; }
+
+        [Required(ErrorMessage = "Skill name is required")]
+        [StringLength(255, ErrorMessage = "Skill name cannot exceed 255 characters")]
+        public string Name { get; init; }
+    }
     public interface ISkillsRepository
     {
         Task<List<SkillDto>> GetAllSkillsAsync();
@@ -21,7 +36,6 @@ namespace DataAccessLayer
         Task<List<SkillDto>> GetSkillsByUserIdAsync(int userId);
         Task<List<UserDto>> GetUsersBySkillIdAsync(int skillId);
     }
-
     public class SkillsRepository : ISkillsRepository
     {
         private readonly NpgsqlDataSource _dataSource;
@@ -69,7 +83,7 @@ namespace DataAccessLayer
                 const string sql = "INSERT INTO Skills (Name) VALUES (@Name) RETURNING Id";
                 await using var conn = await _dataSource.OpenConnectionAsync();
                 var insertedSkillID = await conn.ExecuteScalarAsync<int>(sql, new { Name = skill.Name });
-                return insertedSkillID ;
+                return insertedSkillID;
             }
             catch (Exception ex)
             {
@@ -201,19 +215,5 @@ namespace DataAccessLayer
         }
     }
 
-    public record SkillDto
-    {
-        public SkillDto(int id, string name)
-        {
-            Id = id;
-            Name = name;
-        }
 
-        [Key]
-        public int Id { get; init; }
-
-        [Required(ErrorMessage = "Skill name is required")]
-        [StringLength(255, ErrorMessage = "Skill name cannot exceed 255 characters")]
-        public string Name { get; init; }
-    }
 }

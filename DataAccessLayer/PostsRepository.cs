@@ -7,6 +7,27 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer
 {
+    public record PostDto
+    {
+        public PostDto(int id, int userId, string content, DateTime createdAt)
+        {
+            Id = id;
+            UserId = userId;
+            Content = content;
+            CreatedAt = createdAt;
+        }
+
+        [Key]
+        public int Id { get; init; }
+
+        [Required(ErrorMessage = "User ID is required")]
+        public int UserId { get; init; }
+
+        [Required(ErrorMessage = "Content is required")]
+        public string Content { get; init; } = string.Empty;
+
+        public DateTime CreatedAt { get; init; } = DateTime.UtcNow;
+    }
     public interface IPostsRepository
     {
         Task<List<PostDto>> GetAllPostsAsync();
@@ -130,25 +151,5 @@ namespace DataAccessLayer
         }
     }
 
-    public record PostDto
-    {
-        public PostDto(int id, int userId, string content, DateTime createdAt)
-        {
-            Id = id;
-            UserId = userId;
-            Content = content;
-            CreatedAt = createdAt;
-        }
 
-        [Key]
-        public int Id { get; init; }
-
-        [Required(ErrorMessage = "User ID is required")]
-        public int UserId { get; init; }
-
-        [Required(ErrorMessage = "Content is required")]
-        public string Content { get; init; } = string.Empty;
-
-        public DateTime CreatedAt { get; init; } = DateTime.UtcNow;
-    }
 }
