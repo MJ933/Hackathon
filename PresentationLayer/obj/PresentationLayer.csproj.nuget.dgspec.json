@@ -252,9 +252,6 @@
             "projectReferences": {
               "E:\\My Projects\\Hackathon\\BusinessLayer\\BusinessLayer.csproj": {
                 "projectPath": "E:\\My Projects\\Hackathon\\BusinessLayer\\BusinessLayer.csproj"
-              },
-              "E:\\My Projects\\Hackathon\\DataAccessLayer\\DataAccessLayer.csproj": {
-                "projectPath": "E:\\My Projects\\Hackathon\\DataAccessLayer\\DataAccessLayer.csproj"
               }
             }
           }

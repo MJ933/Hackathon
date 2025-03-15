@@ -10,7 +10,6 @@
         "dependencies": {
           "BusinessLayer": "1.0.0",
           "Dapper": "2.1.66",
-          "DataAccessLayer": "1.0.0",
           "Imagekit": "5.0.0",
           "Microsoft.AspNetCore.Cors": "2.3.0",
           "Microsoft.AspNetCore.Http": "2.3.0",

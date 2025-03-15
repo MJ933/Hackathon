@@ -24,7 +24,8 @@ builder.Services.AddScoped<ISkillsRepository, SkillsRepository>();
 builder.Services.AddScoped<ISkillsService, SkillsService>();
 builder.Services.AddScoped<IPostsRepository, PostsRepository>();
 builder.Services.AddScoped<IPostsService, PostsService>();
-
+builder.Services.AddScoped<IConnectionsRepository, ConnectionsRepository>();
+builder.Services.AddScoped<IConnectionsService, ConnectionsService>();
 
 
 

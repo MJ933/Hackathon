@@ -3,32 +3,24 @@
   "WorkspaceRootPath": "E:\\My Projects\\Hackathon\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{D4C83682-D4AA-43C7-8C5A-CCB375B74586}|DataAccessLayer\\DataAccessLayer.csproj|e:\\my projects\\hackathon\\dataaccesslayer\\connectionsrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D4C83682-D4AA-43C7-8C5A-CCB375B74586}|DataAccessLayer\\DataAccessLayer.csproj|solutionrelative:dataaccesslayer\\connectionsrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3FE552C7-61ED-45CE-822D-2710E651701F}|PresentationLayer\\PresentationLayer.csproj|e:\\my projects\\hackathon\\presentationlayer\\controllers\\connectionscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3FE552C7-61ED-45CE-822D-2710E651701F}|PresentationLayer\\PresentationLayer.csproj|solutionrelative:presentationlayer\\controllers\\connectionscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CA892F8C-FCF7-4D0C-A21D-7C1CB02A65E6}|BusinessLayer\\BusinessLayer.csproj|e:\\my projects\\hackathon\\businesslayer\\connectionsservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CA892F8C-FCF7-4D0C-A21D-7C1CB02A65E6}|BusinessLayer\\BusinessLayer.csproj|solutionrelative:businesslayer\\connectionsservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3FE552C7-61ED-45CE-822D-2710E651701F}|PresentationLayer\\PresentationLayer.csproj|e:\\my projects\\hackathon\\presentationlayer\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3FE552C7-61ED-45CE-822D-2710E651701F}|PresentationLayer\\PresentationLayer.csproj|solutionrelative:presentationlayer\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{3FE552C7-61ED-45CE-822D-2710E651701F}|PresentationLayer\\PresentationLayer.csproj|e:\\my projects\\hackathon\\presentationlayer\\controllers\\postscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{3FE552C7-61ED-45CE-822D-2710E651701F}|PresentationLayer\\PresentationLayer.csproj|solutionrelative:presentationlayer\\controllers\\postscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3FE552C7-61ED-45CE-822D-2710E651701F}|PresentationLayer\\PresentationLayer.csproj|e:\\my projects\\hackathon\\presentationlayer\\controllers\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3FE552C7-61ED-45CE-822D-2710E651701F}|PresentationLayer\\PresentationLayer.csproj|solutionrelative:presentationlayer\\controllers\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3FE552C7-61ED-45CE-822D-2710E651701F}|PresentationLayer\\PresentationLayer.csproj|e:\\my projects\\hackathon\\presentationlayer\\controllers\\skillscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3FE552C7-61ED-45CE-822D-2710E651701F}|PresentationLayer\\PresentationLayer.csproj|solutionrelative:presentationlayer\\controllers\\skillscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CA892F8C-FCF7-4D0C-A21D-7C1CB02A65E6}|BusinessLayer\\BusinessLayer.csproj|e:\\my projects\\hackathon\\businesslayer\\skillsservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CA892F8C-FCF7-4D0C-A21D-7C1CB02A65E6}|BusinessLayer\\BusinessLayer.csproj|solutionrelative:businesslayer\\skillsservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D4C83682-D4AA-43C7-8C5A-CCB375B74586}|DataAccessLayer\\DataAccessLayer.csproj|e:\\my projects\\hackathon\\dataaccesslayer\\skillsrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D4C83682-D4AA-43C7-8C5A-CCB375B74586}|DataAccessLayer\\DataAccessLayer.csproj|solutionrelative:dataaccesslayer\\skillsrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CA892F8C-FCF7-4D0C-A21D-7C1CB02A65E6}|BusinessLayer\\BusinessLayer.csproj|e:\\my projects\\hackathon\\businesslayer\\usersservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CA892F8C-FCF7-4D0C-A21D-7C1CB02A65E6}|BusinessLayer\\BusinessLayer.csproj|solutionrelative:businesslayer\\usersservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D4C83682-D4AA-43C7-8C5A-CCB375B74586}|DataAccessLayer\\DataAccessLayer.csproj|e:\\my projects\\hackathon\\dataaccesslayer\\usersrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D4C83682-D4AA-43C7-8C5A-CCB375B74586}|DataAccessLayer\\DataAccessLayer.csproj|solutionrelative:dataaccesslayer\\usersrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{D4C83682-D4AA-43C7-8C5A-CCB375B74586}|DataAccessLayer\\DataAccessLayer.csproj|e:\\my projects\\hackathon\\dataaccesslayer\\postsrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -37,10 +29,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{CA892F8C-FCF7-4D0C-A21D-7C1CB02A65E6}|BusinessLayer\\BusinessLayer.csproj|e:\\my projects\\hackathon\\businesslayer\\postsservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{CA892F8C-FCF7-4D0C-A21D-7C1CB02A65E6}|BusinessLayer\\BusinessLayer.csproj|solutionrelative:businesslayer\\postsservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3FE552C7-61ED-45CE-822D-2710E651701F}|PresentationLayer\\PresentationLayer.csproj|e:\\my projects\\hackathon\\presentationlayer\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3FE552C7-61ED-45CE-822D-2710E651701F}|PresentationLayer\\PresentationLayer.csproj|solutionrelative:presentationlayer\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -71,131 +59,92 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "ConnectionsRepository.cs",
+              "DocumentMoniker": "E:\\My Projects\\Hackathon\\DataAccessLayer\\ConnectionsRepository.cs",
+              "RelativeDocumentMoniker": "DataAccessLayer\\ConnectionsRepository.cs",
+              "ToolTip": "E:\\My Projects\\Hackathon\\DataAccessLayer\\ConnectionsRepository.cs",
+              "RelativeToolTip": "DataAccessLayer\\ConnectionsRepository.cs",
+              "ViewState": "AgIAABIAAAAAAAAAAAAQwB8AAAA3AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-15T07:06:52.032Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Program.cs",
+              "DocumentMoniker": "E:\\My Projects\\Hackathon\\PresentationLayer\\Program.cs",
+              "RelativeDocumentMoniker": "PresentationLayer\\Program.cs",
+              "ToolTip": "E:\\My Projects\\Hackathon\\PresentationLayer\\Program.cs",
+              "RelativeToolTip": "PresentationLayer\\Program.cs",
+              "ViewState": "AgIAABgAAAAAAAAAAAAgwCkAAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-15T07:37:34.911Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ConnectionsController.cs",
+              "DocumentMoniker": "E:\\My Projects\\Hackathon\\PresentationLayer\\Controllers\\ConnectionsController.cs",
+              "RelativeDocumentMoniker": "PresentationLayer\\Controllers\\ConnectionsController.cs",
+              "ToolTip": "E:\\My Projects\\Hackathon\\PresentationLayer\\Controllers\\ConnectionsController.cs",
+              "RelativeToolTip": "PresentationLayer\\Controllers\\ConnectionsController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-15T07:09:57.107Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ConnectionsService.cs",
+              "DocumentMoniker": "E:\\My Projects\\Hackathon\\BusinessLayer\\ConnectionsService.cs",
+              "RelativeDocumentMoniker": "BusinessLayer\\ConnectionsService.cs",
+              "ToolTip": "E:\\My Projects\\Hackathon\\BusinessLayer\\ConnectionsService.cs",
+              "RelativeToolTip": "BusinessLayer\\ConnectionsService.cs",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAswC8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-15T07:07:55.15Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "PostsController.cs",
               "DocumentMoniker": "E:\\My Projects\\Hackathon\\PresentationLayer\\Controllers\\PostsController.cs",
               "RelativeDocumentMoniker": "PresentationLayer\\Controllers\\PostsController.cs",
               "ToolTip": "E:\\My Projects\\Hackathon\\PresentationLayer\\Controllers\\PostsController.cs",
               "RelativeToolTip": "PresentationLayer\\Controllers\\PostsController.cs",
-              "ViewState": "AgIAAEAAAAAAAAAAAAAswFMAAAAyAAAAAAAAAA==",
+              "ViewState": "AgIAABUAAAAAAAAAAAAIwGIAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-03-14T15:56:16.578Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 6,
               "Title": "PostsService.cs",
               "DocumentMoniker": "E:\\My Projects\\Hackathon\\BusinessLayer\\PostsService.cs",
               "RelativeDocumentMoniker": "BusinessLayer\\PostsService.cs",
               "ToolTip": "E:\\My Projects\\Hackathon\\BusinessLayer\\PostsService.cs",
               "RelativeToolTip": "BusinessLayer\\PostsService.cs",
-              "ViewState": "AgIAAA4AAAAAAAAAAAAswB8AAAAMAAAAAAAAAA==",
+              "ViewState": "AgIAABcAAAAAAAAAAADwvyoAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-03-14T15:55:21.829Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 5,
               "Title": "PostsRepository.cs",
               "DocumentMoniker": "E:\\My Projects\\Hackathon\\DataAccessLayer\\PostsRepository.cs",
               "RelativeDocumentMoniker": "DataAccessLayer\\PostsRepository.cs",
               "ToolTip": "E:\\My Projects\\Hackathon\\DataAccessLayer\\PostsRepository.cs",
               "RelativeToolTip": "DataAccessLayer\\PostsRepository.cs",
-              "ViewState": "AgIAAD0AAAAAAAAAAAA0wE4AAAAIAAAAAAAAAA==",
+              "ViewState": "AgIAAA0AAAAAAAAAAAA3wBIAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-03-14T15:54:18.008Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "SkillsController.cs",
-              "DocumentMoniker": "E:\\My Projects\\Hackathon\\PresentationLayer\\Controllers\\SkillsController.cs",
-              "RelativeDocumentMoniker": "PresentationLayer\\Controllers\\SkillsController.cs",
-              "ToolTip": "E:\\My Projects\\Hackathon\\PresentationLayer\\Controllers\\SkillsController.cs",
-              "RelativeToolTip": "PresentationLayer\\Controllers\\SkillsController.cs",
-              "ViewState": "AgIAABgAAAAAAAAAAAAYwDQAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-14T13:10:39.298Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "SkillsService.cs",
-              "DocumentMoniker": "E:\\My Projects\\Hackathon\\BusinessLayer\\SkillsService.cs",
-              "RelativeDocumentMoniker": "BusinessLayer\\SkillsService.cs",
-              "ToolTip": "E:\\My Projects\\Hackathon\\BusinessLayer\\SkillsService.cs",
-              "RelativeToolTip": "BusinessLayer\\SkillsService.cs",
-              "ViewState": "AgIAABsAAAAAAAAAAAD4vx8AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-14T13:00:48.293Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "SkillsRepository.cs",
-              "DocumentMoniker": "E:\\My Projects\\Hackathon\\DataAccessLayer\\SkillsRepository.cs",
-              "RelativeDocumentMoniker": "DataAccessLayer\\SkillsRepository.cs",
-              "ToolTip": "E:\\My Projects\\Hackathon\\DataAccessLayer\\SkillsRepository.cs",
-              "RelativeToolTip": "DataAccessLayer\\SkillsRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-14T12:57:06.207Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "UsersController.cs",
-              "DocumentMoniker": "E:\\My Projects\\Hackathon\\PresentationLayer\\Controllers\\UsersController.cs",
-              "RelativeDocumentMoniker": "PresentationLayer\\Controllers\\UsersController.cs",
-              "ToolTip": "E:\\My Projects\\Hackathon\\PresentationLayer\\Controllers\\UsersController.cs",
-              "RelativeToolTip": "PresentationLayer\\Controllers\\UsersController.cs",
-              "ViewState": "AgIAACIAAAAAAAAAAAAkwGcAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-14T11:18:06.843Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "UsersRepository.cs",
-              "DocumentMoniker": "E:\\My Projects\\Hackathon\\DataAccessLayer\\UsersRepository.cs",
-              "RelativeDocumentMoniker": "DataAccessLayer\\UsersRepository.cs",
-              "ToolTip": "E:\\My Projects\\Hackathon\\DataAccessLayer\\UsersRepository.cs",
-              "RelativeToolTip": "DataAccessLayer\\UsersRepository.cs",
-              "ViewState": "AgIAAKIAAAAAAAAAAAA+wMUAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-14T07:55:10.017Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "Program.cs",
-              "DocumentMoniker": "E:\\My Projects\\Hackathon\\PresentationLayer\\Program.cs",
-              "RelativeDocumentMoniker": "PresentationLayer\\Program.cs",
-              "ToolTip": "E:\\My Projects\\Hackathon\\PresentationLayer\\Program.cs",
-              "RelativeToolTip": "PresentationLayer\\Program.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAAABsAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-14T11:32:01.757Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "UsersService.cs",
-              "DocumentMoniker": "E:\\My Projects\\Hackathon\\BusinessLayer\\UsersService.cs",
-              "RelativeDocumentMoniker": "BusinessLayer\\UsersService.cs",
-              "ToolTip": "E:\\My Projects\\Hackathon\\BusinessLayer\\UsersService.cs",
-              "RelativeToolTip": "BusinessLayer\\UsersService.cs",
-              "ViewState": "AgIAABsAAAAAAAAAAAAIwCgAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-14T10:57:59.799Z",
               "EditorCaption": ""
             }
           ]
