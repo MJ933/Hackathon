@@ -13,6 +13,18 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddControllers();
+
+// Configure CORS to allow all origins
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll", policy =>
+    {
+        policy.AllowAnyOrigin()
+              .AllowAnyHeader()
+              .AllowAnyMethod();
+    });
+});
+
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 if (string.IsNullOrEmpty(connectionString))
 {
@@ -38,7 +50,6 @@ builder.Services.AddScoped<IRoomsService, RoomsService>();
 builder.Services.AddScoped<IInvitationsRepository, InvitationsRepository>();
 builder.Services.AddScoped<IInvitationsService, InvitationsService>();
 builder.Services.AddScoped<TokenService>();
-
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
@@ -69,8 +80,6 @@ builder.Services.AddSwaggerGen(c =>
         }
     });
 });
-
-
 
 // Add this after builder.Services configuration
 builder.Services.AddAuthentication(options =>
@@ -107,13 +116,17 @@ if (app.Environment.IsDevelopment())
     });
 }
 
-app.UseHttpsRedirection();
+// app.UseHttpsRedirection(); // Commented out since you're using HTTP
+
+app.UseCors("AllowAll"); // Apply the CORS policy
+
 app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
 
 app.Run();
+
 public class JwtSettings
 {
     public string Issuer { get; set; }
