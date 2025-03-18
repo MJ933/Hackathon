@@ -3,6 +3,7 @@ using BusinessLayer;
 using DataAccessLayer;
 using Microsoft.AspNetCore.Http;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 
 namespace PresentationLayer.Controllers
 {
@@ -43,6 +44,7 @@ namespace PresentationLayer.Controllers
                 : Ok(new { Message = "Skill retrieved successfully", Data = skill });
         }
 
+        [Authorize]
         [HttpPost("Create", Name = "CreateSkill")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -61,6 +63,7 @@ namespace PresentationLayer.Controllers
                 new { Message = "Skill created successfully", Data = skillDto });
         }
 
+        [Authorize]
         [HttpPut("Update/{id}", Name = "UpdateSkill")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -78,6 +81,7 @@ namespace PresentationLayer.Controllers
                 : NotFound($"Skill {id} not found");
         }
 
+        [Authorize]
         [HttpDelete("Delete/{id}", Name = "DeleteSkill")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -93,6 +97,7 @@ namespace PresentationLayer.Controllers
                 : NotFound($"Skill {id} not found");
         }
 
+        [Authorize]
         [HttpPost("AddUserSkill/{userId}/{skillId}", Name = "AddUserSkill")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -107,6 +112,7 @@ namespace PresentationLayer.Controllers
                 : BadRequest("Failed to add skill to user");
         }
 
+        [Authorize]
         [HttpDelete("RemoveUserSkill/{userId}/{skillId}", Name = "RemoveUserSkill")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]

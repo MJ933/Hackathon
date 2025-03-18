@@ -59,3 +59,6 @@ E:\My Projects\Hackathon\PresentationLayer\bin\Debug\net8.0\DataAccessLayer.dll
 E:\My Projects\Hackathon\PresentationLayer\bin\Debug\net8.0\BusinessLayer.pdb
 E:\My Projects\Hackathon\PresentationLayer\bin\Debug\net8.0\DataAccessLayer.pdb
 E:\My Projects\Hackathon\PresentationLayer\obj\Debug\net8.0\PresentationLayer.sourcelink.json
+E:\My Projects\Hackathon\PresentationLayer\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+E:\My Projects\Hackathon\PresentationLayer\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.dll
+E:\My Projects\Hackathon\PresentationLayer\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll

@@ -29,6 +29,18 @@ namespace PresentationLayer.Controllers
                 : Ok(new { Message = "Users retrieved successfully", Data = users });
         }
 
+        [HttpGet("GetUsersPaginatedWithFilters", Name = "GetUsersPaginatedWithFiltersAsync")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<ActionResult> GetUsersPaginatedWithFiltersAsync(int pageNumber = 1, int pageSize = 10, int? id = null,
+            string? name = null, string? email = null, string? bio = null, DateTime? createdAt = null)
+        {
+            var users = await _userService.GetUsersPaginatedWithFiltersAsync(pageNumber, pageSize, id, name, email, bio, createdAt);
+            return users.totalCount == 0
+                ? NotFound("No users found in the system")
+                : Ok(new { Message = "Users retrieved successfully", Data = new {TotalCount = users.totalCount , Users = users.usersList } });
+        }
+
         [HttpGet("GetById/{userId}", Name = "GetUserById")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -62,6 +74,7 @@ namespace PresentationLayer.Controllers
                 new { Message = "User created successfully", Data = userDto });
         }
 
+        [Authorize]
         [HttpPut("Update/{userId}", Name = "UpdateUser")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -83,6 +96,7 @@ namespace PresentationLayer.Controllers
             return Ok(new { Message = "User updated successfully", Data = userDto });
         }
 
+        [Authorize]
         [HttpDelete("Delete/{userId}", Name = "DeleteUser")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]

@@ -1,5 +1,6 @@
 ﻿using BusinessLayer;
 using DataAccessLayer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
@@ -7,6 +8,8 @@ namespace PresentationLayer.Controllers
 {
     [Route("api/Messages")]
     [ApiController]
+    [Authorize]
+
     public class MessagesController : ControllerBase
     {
         private readonly IMessagesService _messagesService;
@@ -17,7 +20,6 @@ namespace PresentationLayer.Controllers
             _messagesService = messagesService;
             _usersService = usersService;
         }
-
         [HttpGet("GetAll", Name = "GetAllMessages")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]

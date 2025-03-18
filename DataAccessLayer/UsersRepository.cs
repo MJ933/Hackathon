@@ -1,4 +1,5 @@
 ﻿using Dapper;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
 using Npgsql;
 using System;
@@ -58,6 +59,9 @@ namespace DataAccessLayer
         Task<bool> UpdateUserAsync(UserDto user);
         Task<bool> DeleteUserAsync(int userID);
         Task<bool> IsUserExistsByUserIDAsync(int? userID);
+        Task<UserDto?> GetUserByUserEmailAndPassword(UserDto userDto);
+        Task<(List<UserDto> usersList, int totalCount)> GetUsersPaginatedWithFiltersAsync(int pageNumber, int pageSize, int? id,
+            string? name, string? email, string? bio, DateTime? createdAt);
     }
     public class UsersRepository : IUsersRepository
     {
@@ -85,6 +89,49 @@ namespace DataAccessLayer
                 }
             }
         }
+        public async Task<(List<UserDto> usersList, int totalCount)> GetUsersPaginatedWithFiltersAsync(int pageNumber, int pageSize, int? id,
+            string? name, string? email, string? bio, DateTime? createdAt)
+        {
+            try
+            {
+                const string sql = @"select * from fn_get_users_paginated_with_filters(
+                    @p_page_number,
+                    @p_page_size,
+                    @p_id,
+                    @p_name,
+                    @p_email,
+                    @p_bio,
+                    @p_created_at
+                    );";
+                var parameters = new
+                {
+                    p_page_number = pageNumber,
+                    p_page_size = pageSize,
+                    p_id = id,
+                    p_name = name,
+                    p_email = email,
+                    p_bio = bio,
+                    p_created_at = createdAt,
+                };
+                await using var conn = await _dataSource.OpenConnectionAsync();
+                var result = await conn.QueryAsync<dynamic>(sql, parameters);
+                var users_List = result.Select(row => new UserDto(
+                     row.id,
+                    row.name,
+                     row.email,
+                     "0",
+                    row.bio,
+                    row.createdat
+                    )).ToList();
+                int total_Count = result.Any() ? (int)result.First().total_count : 0;
+                return (users_List, total_Count);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error in GetAllUsersAsync");
+                return (new List<UserDto>(), 0);
+            }
+        }
 
         public async Task<UserDto?> GetUserByUserIDAsync(int userID)
         {
@@ -99,6 +146,24 @@ namespace DataAccessLayer
             catch (Exception ex)
             {
                 _logger.LogError(ex, $"Error in GetUserByUserID for UserID: {userID}");
+                return null;
+            }
+        }
+
+        public async Task<UserDto?> GetUserByUserEmailAndPassword(UserDto userDto)
+        {
+            try
+            {
+                const string sql = "Select * from Users where Email = @Email and PasswordHash = PasswordHash ";
+                var parameters = new { Email = userDto.Email, PasswordHash = userDto.PasswordHash };
+                await using var conn = await _dataSource.OpenConnectionAsync();
+                var user = await conn.QuerySingleOrDefaultAsync<UserDto>(sql, parameters);
+                return user;
+
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, $"Error in GetUserByUserID for User Name: {userDto.Name}");
                 return null;
             }
         }

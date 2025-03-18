@@ -7,6 +7,7 @@ E:\My Projects\Hackathon\PresentationLayer\obj\Release\net8.0\PubTmp\Out\Present
 E:\My Projects\Hackathon\PresentationLayer\obj\Release\net8.0\PubTmp\Out\PresentationLayer.pdb
 E:\My Projects\Hackathon\PresentationLayer\obj\Release\net8.0\PubTmp\Out\Dapper.dll
 E:\My Projects\Hackathon\PresentationLayer\obj\Release\net8.0\PubTmp\Out\Imagekit.dll
+E:\My Projects\Hackathon\PresentationLayer\obj\Release\net8.0\PubTmp\Out\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 E:\My Projects\Hackathon\PresentationLayer\obj\Release\net8.0\PubTmp\Out\Microsoft.Bcl.AsyncInterfaces.dll
 E:\My Projects\Hackathon\PresentationLayer\obj\Release\net8.0\PubTmp\Out\Microsoft.Bcl.Memory.dll
 E:\My Projects\Hackathon\PresentationLayer\obj\Release\net8.0\PubTmp\Out\Microsoft.Extensions.Configuration.dll
@@ -20,6 +21,8 @@ E:\My Projects\Hackathon\PresentationLayer\obj\Release\net8.0\PubTmp\Out\Microso
 E:\My Projects\Hackathon\PresentationLayer\obj\Release\net8.0\PubTmp\Out\Microsoft.IdentityModel.Abstractions.dll
 E:\My Projects\Hackathon\PresentationLayer\obj\Release\net8.0\PubTmp\Out\Microsoft.IdentityModel.JsonWebTokens.dll
 E:\My Projects\Hackathon\PresentationLayer\obj\Release\net8.0\PubTmp\Out\Microsoft.IdentityModel.Logging.dll
+E:\My Projects\Hackathon\PresentationLayer\obj\Release\net8.0\PubTmp\Out\Microsoft.IdentityModel.Protocols.dll
+E:\My Projects\Hackathon\PresentationLayer\obj\Release\net8.0\PubTmp\Out\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 E:\My Projects\Hackathon\PresentationLayer\obj\Release\net8.0\PubTmp\Out\Microsoft.IdentityModel.Tokens.dll
 E:\My Projects\Hackathon\PresentationLayer\obj\Release\net8.0\PubTmp\Out\Microsoft.OpenApi.dll
 E:\My Projects\Hackathon\PresentationLayer\obj\Release\net8.0\PubTmp\Out\Newtonsoft.Json.dll

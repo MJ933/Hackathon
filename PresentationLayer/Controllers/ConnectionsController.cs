@@ -1,5 +1,6 @@
 ﻿using BusinessLayer;
 using DataAccessLayer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
@@ -7,6 +8,7 @@ namespace PresentationLayer.Controllers
 {
     [Route("api/Connections")]
     [ApiController]
+    [Authorize]
     public class ConnectionsController : ControllerBase
     {
         private readonly IConnectionsService _connectionsService;

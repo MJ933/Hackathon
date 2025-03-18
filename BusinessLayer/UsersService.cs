@@ -15,6 +15,9 @@ namespace BusinessLayer
         Task<bool> UpdateUserAsync(UserDto user);
         Task<bool> DeleteUserAsync(int userID);
         Task<bool> IsUserExistsByUserIDAsync(int? userID);
+        Task<UserDto?> GetUserByUserEmailAndPassword(UserDto userDto);
+        Task<(List<UserDto> usersList, int totalCount)> GetUsersPaginatedWithFiltersAsync(int pageNumber, int pageSize, int? id,
+            string? name, string? email, string? bio, DateTime? createdAt);
         //public UserDto User { get; set; }
     }
     public class UsersService : IUsersService
@@ -50,6 +53,12 @@ namespace BusinessLayer
         {
             return await _userRepository.IsUserExistsByUserIDAsync(orderID);
         }
+        public async Task<UserDto?> GetUserByUserEmailAndPassword(UserDto userDto) =>
+             await _userRepository.GetUserByUserEmailAndPassword(userDto);
+
+        public async Task<(List<UserDto> usersList, int totalCount)> GetUsersPaginatedWithFiltersAsync(int pageNumber, int pageSize, int? id,
+             string? name, string? email, string? bio, DateTime? createdAt) =>
+             await _userRepository.GetUsersPaginatedWithFiltersAsync(pageNumber, pageSize, id, name, email, bio, createdAt);
 
     }
 }

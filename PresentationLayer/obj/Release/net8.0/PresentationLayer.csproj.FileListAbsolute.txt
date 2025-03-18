@@ -59,3 +59,6 @@ E:\My Projects\Hackathon\PresentationLayer\obj\Release\net8.0\PresentationLayer.
 E:\My Projects\Hackathon\PresentationLayer\obj\Release\net8.0\PresentationLayer.genruntimeconfig.cache
 E:\My Projects\Hackathon\PresentationLayer\obj\Release\net8.0\ref\PresentationLayer.dll
 E:\My Projects\Hackathon\PresentationLayer\obj\Release\net8.0\PresentationLayer.sourcelink.json
+E:\My Projects\Hackathon\PresentationLayer\bin\Release\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+E:\My Projects\Hackathon\PresentationLayer\bin\Release\net8.0\Microsoft.IdentityModel.Protocols.dll
+E:\My Projects\Hackathon\PresentationLayer\bin\Release\net8.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll

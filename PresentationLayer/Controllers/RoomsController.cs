@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using BusinessLayer;
 using DataAccessLayer;
+using Microsoft.AspNetCore.Authorization;
 
 namespace PresentationLayer.Controllers
 {
@@ -42,6 +43,7 @@ namespace PresentationLayer.Controllers
                 : Ok(new { Message = "Room retrieved successfully", Data = room });
         }
 
+        [Authorize]
         [HttpPost("CreateRoom")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -60,6 +62,7 @@ namespace PresentationLayer.Controllers
                 new { Message = "Room created successfully", Data = room });
         }
 
+        [Authorize]
         [HttpPut("UpdateRoom/{roomId}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -79,6 +82,7 @@ namespace PresentationLayer.Controllers
             return Ok(new { Message = "Room updated successfully", Data = room });
         }
 
+        [Authorize]
         [HttpDelete("DeleteRoom/{roomId}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -109,6 +113,7 @@ namespace PresentationLayer.Controllers
             return Ok(new { Message = "Room users retrieved", Data = users });
         }
 
+        [Authorize]
         [HttpPost("AddUserToRoom/{roomId}/{userId}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -124,6 +129,7 @@ namespace PresentationLayer.Controllers
             return Ok(new { Message = $"User {userId} added to room {roomId}" });
         }
 
+        [Authorize]
         [HttpDelete("DeleteUserFromRoom/{roomId}/{userId}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -144,6 +150,7 @@ namespace PresentationLayer.Controllers
             return Ok(new { Message = $"User {userId} from Room {roomId} deleted successfully" });
         }
 
+        [Authorize]
         [HttpGet("GetUsersDetailsDataInRoomByRoomId/{roomId}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
