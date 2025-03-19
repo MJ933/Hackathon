@@ -1,5 +1,47 @@
 [
   {
+    "ContainingType": "PresentationLayer.Controllers.AiIntegrationController",
+    "Method": "SuggestProjectForRoomAsync",
+    "RelativePath": "api/AiIntegration/{roomId}/SuggestRoomProject",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "roomId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "message",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PresentationLayer.Controllers.AiIntegrationController",
+    "Method": "SuggestOpenSourceProjectsAsync",
+    "RelativePath": "api/AiIntegration/{userId}/SuggestOpenSourceProjects",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "message",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "PresentationLayer.Controllers.AuthController",
     "Method": "LoginUserByEmailAndPassword",
     "RelativePath": "api/Auth/LoginUserByEmailAndPassword",

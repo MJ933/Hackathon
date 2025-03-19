@@ -5,6 +5,66 @@
     "version": "v1"
   },
   "paths": {
+    "/api/AiIntegration/{userId}/SuggestOpenSourceProjects": {
+      "post": {
+        "tags": [
+          "AiIntegration"
+        ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "message",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/AiIntegration/{roomId}/SuggestRoomProject": {
+      "post": {
+        "tags": [
+          "AiIntegration"
+        ],
+        "parameters": [
+          {
+            "name": "roomId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "message",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/Auth/LoginUserByEmailAndPassword": {
       "post": {
         "tags": [

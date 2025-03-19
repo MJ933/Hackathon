@@ -11,3 +11,16 @@ E:\My Projects\Hackathon\DataAccessLayer\obj\Debug\net8.0\refint\DataAccessLayer
 E:\My Projects\Hackathon\DataAccessLayer\obj\Debug\net8.0\DataAccessLayer.pdb
 E:\My Projects\Hackathon\DataAccessLayer\obj\Debug\net8.0\ref\DataAccessLayer.dll
 E:\My Projects\Hackathon\DataAccessLayer\obj\Debug\net8.0\DataAccessLayer.sourcelink.json
+E:\Documents\Projects\FullStack\Hackthon\BackEnd\Hackathon\DataAccessLayer\bin\Debug\net8.0\DataAccessLayer.deps.json
+E:\Documents\Projects\FullStack\Hackthon\BackEnd\Hackathon\DataAccessLayer\bin\Debug\net8.0\DataAccessLayer.dll
+E:\Documents\Projects\FullStack\Hackthon\BackEnd\Hackathon\DataAccessLayer\bin\Debug\net8.0\DataAccessLayer.pdb
+E:\Documents\Projects\FullStack\Hackthon\BackEnd\Hackathon\DataAccessLayer\obj\Debug\net8.0\DataAccessLayer.csproj.AssemblyReference.cache
+E:\Documents\Projects\FullStack\Hackthon\BackEnd\Hackathon\DataAccessLayer\obj\Debug\net8.0\DataAccessLayer.GeneratedMSBuildEditorConfig.editorconfig
+E:\Documents\Projects\FullStack\Hackthon\BackEnd\Hackathon\DataAccessLayer\obj\Debug\net8.0\DataAccessLayer.AssemblyInfoInputs.cache
+E:\Documents\Projects\FullStack\Hackthon\BackEnd\Hackathon\DataAccessLayer\obj\Debug\net8.0\DataAccessLayer.AssemblyInfo.cs
+E:\Documents\Projects\FullStack\Hackthon\BackEnd\Hackathon\DataAccessLayer\obj\Debug\net8.0\DataAccessLayer.csproj.CoreCompileInputs.cache
+E:\Documents\Projects\FullStack\Hackthon\BackEnd\Hackathon\DataAccessLayer\obj\Debug\net8.0\DataAccessLayer.sourcelink.json
+E:\Documents\Projects\FullStack\Hackthon\BackEnd\Hackathon\DataAccessLayer\obj\Debug\net8.0\DataAccessLayer.dll
+E:\Documents\Projects\FullStack\Hackthon\BackEnd\Hackathon\DataAccessLayer\obj\Debug\net8.0\refint\DataAccessLayer.dll
+E:\Documents\Projects\FullStack\Hackthon\BackEnd\Hackathon\DataAccessLayer\obj\Debug\net8.0\DataAccessLayer.pdb
+E:\Documents\Projects\FullStack\Hackthon\BackEnd\Hackathon\DataAccessLayer\obj\Debug\net8.0\ref\DataAccessLayer.dll

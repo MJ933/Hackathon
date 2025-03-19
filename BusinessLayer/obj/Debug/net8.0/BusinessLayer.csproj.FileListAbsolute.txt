@@ -14,3 +14,19 @@ E:\My Projects\Hackathon\BusinessLayer\obj\Debug\net8.0\refint\BusinessLayer.dll
 E:\My Projects\Hackathon\BusinessLayer\obj\Debug\net8.0\BusinessLayer.pdb
 E:\My Projects\Hackathon\BusinessLayer\obj\Debug\net8.0\ref\BusinessLayer.dll
 E:\My Projects\Hackathon\BusinessLayer\obj\Debug\net8.0\BusinessLayer.sourcelink.json
+E:\Documents\Projects\FullStack\Hackthon\BackEnd\Hackathon\BusinessLayer\obj\Debug\net8.0\BusinessLayer.csproj.AssemblyReference.cache
+E:\Documents\Projects\FullStack\Hackthon\BackEnd\Hackathon\BusinessLayer\obj\Debug\net8.0\BusinessLayer.GeneratedMSBuildEditorConfig.editorconfig
+E:\Documents\Projects\FullStack\Hackthon\BackEnd\Hackathon\BusinessLayer\obj\Debug\net8.0\BusinessLayer.AssemblyInfoInputs.cache
+E:\Documents\Projects\FullStack\Hackthon\BackEnd\Hackathon\BusinessLayer\obj\Debug\net8.0\BusinessLayer.AssemblyInfo.cs
+E:\Documents\Projects\FullStack\Hackthon\BackEnd\Hackathon\BusinessLayer\obj\Debug\net8.0\BusinessLayer.csproj.CoreCompileInputs.cache
+E:\Documents\Projects\FullStack\Hackthon\BackEnd\Hackathon\BusinessLayer\obj\Debug\net8.0\BusinessLayer.sourcelink.json
+E:\Documents\Projects\FullStack\Hackthon\BackEnd\Hackathon\BusinessLayer\obj\Debug\net8.0\BusinessLayer.dll
+E:\Documents\Projects\FullStack\Hackthon\BackEnd\Hackathon\BusinessLayer\obj\Debug\net8.0\refint\BusinessLayer.dll
+E:\Documents\Projects\FullStack\Hackthon\BackEnd\Hackathon\BusinessLayer\obj\Debug\net8.0\BusinessLayer.pdb
+E:\Documents\Projects\FullStack\Hackthon\BackEnd\Hackathon\BusinessLayer\bin\Debug\net8.0\BusinessLayer.deps.json
+E:\Documents\Projects\FullStack\Hackthon\BackEnd\Hackathon\BusinessLayer\bin\Debug\net8.0\BusinessLayer.dll
+E:\Documents\Projects\FullStack\Hackthon\BackEnd\Hackathon\BusinessLayer\bin\Debug\net8.0\BusinessLayer.pdb
+E:\Documents\Projects\FullStack\Hackthon\BackEnd\Hackathon\BusinessLayer\bin\Debug\net8.0\DataAccessLayer.dll
+E:\Documents\Projects\FullStack\Hackthon\BackEnd\Hackathon\BusinessLayer\bin\Debug\net8.0\DataAccessLayer.pdb
+E:\Documents\Projects\FullStack\Hackthon\BackEnd\Hackathon\BusinessLayer\obj\Debug\net8.0\Business.EA331CBA.Up2Date
+E:\Documents\Projects\FullStack\Hackthon\BackEnd\Hackathon\BusinessLayer\obj\Debug\net8.0\ref\BusinessLayer.dll
