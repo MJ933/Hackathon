@@ -3,16 +3,16 @@
   "WorkspaceRootPath": "E:\\My Projects\\Hackathon\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{3FE552C7-61ED-45CE-822D-2710E651701F}|PresentationLayer\\PresentationLayer.csproj|e:\\my projects\\hackathon\\presentationlayer\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3FE552C7-61ED-45CE-822D-2710E651701F}|PresentationLayer\\PresentationLayer.csproj|solutionrelative:presentationlayer\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{3FE552C7-61ED-45CE-822D-2710E651701F}|PresentationLayer\\PresentationLayer.csproj|e:\\my projects\\hackathon\\presentationlayer\\controllers\\aiintegrationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{3FE552C7-61ED-45CE-822D-2710E651701F}|PresentationLayer\\PresentationLayer.csproj|solutionrelative:presentationlayer\\controllers\\aiintegrationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{CA892F8C-FCF7-4D0C-A21D-7C1CB02A65E6}|BusinessLayer\\BusinessLayer.csproj|e:\\my projects\\hackathon\\businesslayer\\geminiapiclientservice\\geminiapiclientservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{CA892F8C-FCF7-4D0C-A21D-7C1CB02A65E6}|BusinessLayer\\BusinessLayer.csproj|solutionrelative:businesslayer\\geminiapiclientservice\\geminiapiclientservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3FE552C7-61ED-45CE-822D-2710E651701F}|PresentationLayer\\PresentationLayer.csproj|e:\\my projects\\hackathon\\presentationlayer\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3FE552C7-61ED-45CE-822D-2710E651701F}|PresentationLayer\\PresentationLayer.csproj|solutionrelative:presentationlayer\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{3FE552C7-61ED-45CE-822D-2710E651701F}|PresentationLayer\\PresentationLayer.csproj|e:\\my projects\\hackathon\\presentationlayer\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
@@ -46,7 +46,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 8,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
@@ -66,26 +66,26 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
               "Title": "Program.cs",
               "DocumentMoniker": "E:\\My Projects\\Hackathon\\PresentationLayer\\Program.cs",
               "RelativeDocumentMoniker": "PresentationLayer\\Program.cs",
               "ToolTip": "E:\\My Projects\\Hackathon\\PresentationLayer\\Program.cs",
               "RelativeToolTip": "PresentationLayer\\Program.cs",
-              "ViewState": "AgIAACEAAAAAAAAAAAAAADAAAAArAAAAAAAAAA==",
+              "ViewState": "AgIAACIAAAAAAAAAAAAAACoAAABCAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-03-20T11:43:30.659Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "GeminiApiClientService.cs",
               "DocumentMoniker": "E:\\My Projects\\Hackathon\\BusinessLayer\\GeminiApiClientService\\GeminiApiClientService.cs",
               "RelativeDocumentMoniker": "BusinessLayer\\GeminiApiClientService\\GeminiApiClientService.cs",
               "ToolTip": "E:\\My Projects\\Hackathon\\BusinessLayer\\GeminiApiClientService\\GeminiApiClientService.cs",
               "RelativeToolTip": "BusinessLayer\\GeminiApiClientService\\GeminiApiClientService.cs",
-              "ViewState": "AgIAABkAAAAAAAAAAAAQwBwAAAAxAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAjAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-03-20T11:42:59.593Z",
               "EditorCaption": ""
@@ -100,8 +100,7 @@
               "RelativeToolTip": "PresentationLayer\\appsettings.json",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-03-20T11:34:40.232Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-20T11:34:40.232Z"
             },
             {
               "$type": "Document",
@@ -117,13 +116,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "AiIntegrationController.cs",
               "DocumentMoniker": "E:\\My Projects\\Hackathon\\PresentationLayer\\Controllers\\AiIntegrationController.cs",
               "RelativeDocumentMoniker": "PresentationLayer\\Controllers\\AiIntegrationController.cs",
               "ToolTip": "E:\\My Projects\\Hackathon\\PresentationLayer\\Controllers\\AiIntegrationController.cs",
               "RelativeToolTip": "PresentationLayer\\Controllers\\AiIntegrationController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-03-20T11:30:36.728Z",
               "EditorCaption": ""
@@ -174,8 +173,7 @@
               "RelativeToolTip": "DataAccessLayer\\RoomsRepository.cs",
               "ViewState": "AgIAADMAAAAAAAAAAAA5wDcAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-20T11:18:39.257Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-20T11:18:39.257Z"
             }
           ]
         }

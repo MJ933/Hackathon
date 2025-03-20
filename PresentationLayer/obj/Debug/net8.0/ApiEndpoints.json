@@ -1332,6 +1332,46 @@
   },
   {
     "ContainingType": "PresentationLayer.Controllers.RoomsController",
+    "Method": "GetRoomsPaginated",
+    "RelativePath": "api/Rooms/GetRoomsPaginated",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pageNumber",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "pageSize",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[DataAccessLayer.Productions.RoomDto, DataAccessLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 404
+      }
+    ]
+  },
+  {
+    "ContainingType": "PresentationLayer.Controllers.RoomsController",
     "Method": "GetRoomUsers",
     "RelativePath": "api/Rooms/GetRoomUsers/{roomId}",
     "HttpMethod": "GET",
@@ -1673,6 +1713,47 @@
       }
     ],
     "EndpointName": "GetSkilledUsers"
+  },
+  {
+    "ContainingType": "PresentationLayer.Controllers.SkillsController",
+    "Method": "GetSkillsPaginatedAsync",
+    "RelativePath": "api/Skills/GetSkillsPaginated",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pageNumber",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "pageSize",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[DataAccessLayer.SkillDto, DataAccessLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 404
+      }
+    ],
+    "EndpointName": "GetSkillsPaginated"
   },
   {
     "ContainingType": "PresentationLayer.Controllers.SkillsController",

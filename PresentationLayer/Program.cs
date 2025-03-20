@@ -9,6 +9,8 @@ using System.Text;
 using PresentationLayer.Controllers.Classes;
 using Microsoft.OpenApi.Models;
 using DataAccessLayer.Productions;
+using PresentationLayer.Controllers;
+using BusinessLayer.Client;
 
 var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
@@ -51,7 +53,7 @@ builder.Services.AddScoped<IRoomsService, RoomsService>();
 builder.Services.AddScoped<IInvitationsRepository, InvitationsRepository>();
 builder.Services.AddScoped<IInvitationsService, InvitationsService>();
 builder.Services.AddScoped<TokenService>();
-
+builder.Services.AddScoped<GeminiApiClientService>();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
