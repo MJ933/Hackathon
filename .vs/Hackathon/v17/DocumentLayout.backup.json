@@ -72,7 +72,7 @@
               "RelativeDocumentMoniker": "PresentationLayer\\Program.cs",
               "ToolTip": "E:\\My Projects\\Hackathon\\PresentationLayer\\Program.cs",
               "RelativeToolTip": "PresentationLayer\\Program.cs",
-              "ViewState": "AgIAACIAAAAAAAAAAAAAADcAAAA1AAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACoAAABCAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-03-20T11:43:30.659Z",
               "EditorCaption": ""
@@ -87,8 +87,7 @@
               "RelativeToolTip": "BusinessLayer\\GeminiApiClientService\\GeminiApiClientService.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAjAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-20T11:42:59.593Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-20T11:42:59.593Z"
             },
             {
               "$type": "Document",
@@ -124,8 +123,7 @@
               "RelativeToolTip": "PresentationLayer\\Controllers\\AiIntegrationController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-20T11:30:36.728Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-20T11:30:36.728Z"
             },
             {
               "$type": "Document",
