@@ -9,7 +9,7 @@ namespace BusinessLayer.Client;
 public class GeminiApiClientService
 {
     private readonly ISkillsRepository _skillsRepository;
-    private readonly IRoomsRepository _roomsRepository;
+    private readonly IRoomsService _roomsService;
     private readonly IMessagesRepository _messagesRepository;
     private readonly HttpClient _httpClient;
     // this the user id of the AI user in the database 
@@ -19,13 +19,13 @@ public class GeminiApiClientService
 
     public GeminiApiClientService(
         ISkillsRepository skillsRepository,
-        IRoomsRepository roomsRepository,
+        IRoomsService roomsService,
         IMessagesRepository messagesRepository)
     {
         //_apiKey = key;
         _httpClient = new HttpClient();
         _skillsRepository = skillsRepository;
-        _roomsRepository = roomsRepository;
+        _roomsService = roomsService;
         _messagesRepository = messagesRepository;
     }
 
@@ -136,7 +136,7 @@ public class GeminiApiClientService
             return message;
         }
 
-        var users = await _roomsRepository.GetRoomUsersAsync(userId);
+        var users = await _roomsService.GetRoomUsersAsync(userId);
         var prompt = "Given the following team profile, suggest an appropriate open-source project for contribution. Analyze the team members' skills, preferred languages, technologies, and interests to determine suitable roles for each member. Additionally, create a realistic time plan with milestones for project completion.\r\n\r\n";
 
         int memberIndex = 1;
