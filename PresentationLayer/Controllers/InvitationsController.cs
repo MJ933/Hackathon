@@ -30,6 +30,39 @@ namespace PresentationLayer.Controllers
                 : Ok(new { Message = "Invitations retrieved successfully", Data = invitations });
         }
 
+        [HttpGet("GetInvitationsPaginated")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<ActionResult<List<InvitationDto>>> GetInvitationsPaginatedAsync(int pageNumber = 1, int pageSize = 10)
+        {
+            var invitations = await _service.GetInvitationsPaginatedAsync(pageNumber, pageSize);
+            return invitations.Count == 0
+                ? NotFound("No invitations found")
+                : Ok(new { Message = "Invitations retrieved successfully", Data = invitations });
+        }
+
+        [HttpGet("GetSentInvitationsForUserPaginated")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<ActionResult<List<InvitationDto>>> GetSentInvitationsForUserPaginatedAsync(int pageNumber = 1, int pageSize = 10, int UserId = 3)
+        {
+            var invitations = await _service.GetSentInvitationsForUserPaginatedAsync(pageNumber, pageSize, UserId);
+            return invitations.Count == 0
+                ? NotFound("No invitations found")
+                : Ok(new { Message = "Invitations retrieved successfully", Data = invitations });
+        }
+
+        [HttpGet("GetReceivedInvitationsForUserPaginated")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<ActionResult<List<InvitationDto>>> GetReceivedInvitationsForUserPaginatedAsync(int pageNumber = 1, int pageSize = 10, int UserId = 5)
+        {
+            var invitations = await _service.GetReceivedInvitationsForUserPaginatedAsync(pageNumber, pageSize, UserId);
+            return invitations.Count == 0
+                ? NotFound("No invitations found")
+                : Ok(new { Message = "Invitations retrieved successfully", Data = invitations });
+        }
+
         [HttpGet("GetById/{id}", Name = "GetInvitationById")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]

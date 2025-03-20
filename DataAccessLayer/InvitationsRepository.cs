@@ -7,6 +7,37 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer
 {
+    public record InvitationDto
+    {
+        public InvitationDto(int id, int inviterId, int inviteeId, int roomId, string status, DateTime createdAt, DateTime updatedAt)
+        {
+            Id = id;
+            InviterId = inviterId;
+            InviteeId = inviteeId;
+            RoomId = roomId;
+            Status = status;
+            CreatedAt = createdAt;
+            UpdatedAt = updatedAt;
+        }
+
+        [Key]
+        public int Id { get; init; }
+
+        [Required(ErrorMessage = "Inviter ID is required")]
+        public int InviterId { get; init; }
+
+        [Required(ErrorMessage = "Invitee ID is required")]
+        public int InviteeId { get; init; }
+
+        [Required(ErrorMessage = "Room ID is required")]
+        public int RoomId { get; init; }
+
+        [Required(ErrorMessage = "Status is required")]
+        public string Status { get; init; } = "Pending";
+
+        public DateTime CreatedAt { get; init; } = DateTime.UtcNow;
+        public DateTime UpdatedAt { get; init; } = DateTime.UtcNow;
+    }
     public interface IInvitationsRepository
     {
         Task<List<InvitationDto>> GetAllInvitationsAsync();
@@ -15,6 +46,9 @@ namespace DataAccessLayer
         Task<bool> UpdateInvitationAsync(InvitationDto invitation);
         Task<bool> DeleteInvitationAsync(int invitationId);
         Task<bool> IsInvitationExistsByIdAsync(int invitationId);
+        Task<List<InvitationDto>> GetSentInvitationsForUserPaginatedAsync(int pageNumber, int pageSize, int currentUserId);
+        Task<List<InvitationDto>> GetReceivedInvitationsForUserPaginatedAsync(int pageNumber, int pageSize, int currentUserId);
+        Task<List<InvitationDto>> GetInvitationsPaginatedAsync(int pageNumber, int pageSize);
     }
 
     public class InvitationsRepository : IInvitationsRepository
@@ -40,6 +74,78 @@ namespace DataAccessLayer
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Error fetching all invitations");
+                return new List<InvitationDto>();
+            }
+        }
+        public async Task<List<InvitationDto>> GetInvitationsPaginatedAsync(int pageNumber, int pageSize)
+        {
+            try
+            {
+                const string sql = @"SELECT * FROM Invitations
+                                    ORDER BY CreatedAt DESC limit @pageSize
+                                    offset ((@pageNumber - 1)* @pageSize);";
+                var parameters = new
+                {
+                    pageNumber = pageNumber,
+                    pageSize = pageSize
+                };
+                await using var conn = await _dataSource.OpenConnectionAsync();
+                var invitations = await conn.QueryAsync<InvitationDto>(sql, parameters);
+                return invitations.ToList();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error fetching all invitations");
+                return new List<InvitationDto>();
+            }
+        }
+        public async Task<List<InvitationDto>> GetSentInvitationsForUserPaginatedAsync(int pageNumber, int pageSize, int currentUserId)
+        {
+            try
+            {
+                const string sql =
+                                @"SELECT * FROM Invitations  
+                                where inviterId = @inviterId ORDER BY CreatedAt DESC 
+                                limit @pageSize
+                                offset ((@pageNumber - 1)* @pageSize);";
+                var parameters = new
+                {
+                    inviterId = currentUserId,
+                    pageNumber = pageNumber,
+                    pageSize = pageSize
+                };
+                await using var conn = await _dataSource.OpenConnectionAsync();
+                var invitations = await conn.QueryAsync<InvitationDto>(sql, parameters);
+                return invitations.ToList();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, $"Error in GetSentInvitationsForUser for inviterId: {currentUserId}");
+                return new List<InvitationDto>();
+            }
+        }
+        public async Task<List<InvitationDto>> GetReceivedInvitationsForUserPaginatedAsync(int pageNumber, int pageSize, int currentUserId)
+        {
+            try
+            {
+                const string sql =
+                                @"SELECT * FROM Invitations  
+                                where inviteeId = @inviteeId ORDER BY CreatedAt DESC 
+                                limit @pageSize
+                                offset ((@pageNumber - 1)* @pageSize);";
+                var parameters = new
+                {
+                    inviteeId = currentUserId,
+                    pageNumber = pageNumber,
+                    pageSize = pageSize
+                };
+                await using var conn = await _dataSource.OpenConnectionAsync();
+                var invitations = await conn.QueryAsync<InvitationDto>(sql, parameters);
+                return invitations.ToList();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, $"Error in GetReceivedInvitationsForUser for inviterId: {currentUserId}");
                 return new List<InvitationDto>();
             }
         }
@@ -130,37 +236,9 @@ namespace DataAccessLayer
                 return false;
             }
         }
+
+
     }
 
-    public record InvitationDto
-    {
-        public InvitationDto(int id, int inviterId, int inviteeId, int roomId, string status, DateTime createdAt, DateTime updatedAt)
-        {
-            Id = id;
-            InviterId = inviterId;
-            InviteeId = inviteeId;
-            RoomId = roomId;
-            Status = status;
-            CreatedAt = createdAt;
-            UpdatedAt = updatedAt;
-        }
 
-        [Key]
-        public int Id { get; init; }
-
-        [Required(ErrorMessage = "Inviter ID is required")]
-        public int InviterId { get; init; }
-
-        [Required(ErrorMessage = "Invitee ID is required")]
-        public int InviteeId { get; init; }
-
-        [Required(ErrorMessage = "Room ID is required")]
-        public int RoomId { get; init; }
-
-        [Required(ErrorMessage = "Status is required")]
-        public string Status { get; init; } = "Pending";
-
-        public DateTime CreatedAt { get; init; } = DateTime.UtcNow;
-        public DateTime UpdatedAt { get; init; } = DateTime.UtcNow;
-    }
 }

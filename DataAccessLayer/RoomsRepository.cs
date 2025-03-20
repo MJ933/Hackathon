@@ -1,5 +1,4 @@
 ﻿using Dapper;
-using DataAccessLayer;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Npgsql;
@@ -8,16 +7,17 @@ using System.ComponentModel.DataAnnotations;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 
-namespace DataAccessLayer
+namespace DataAccessLayer.Productions
 {
     public record RoomDto
     {
-        public RoomDto(int id, string name, string description, DateTime createdAt)
+        public RoomDto(int id, string name, string description, DateTime createdAt, int creatorId)
         {
             Id = id;
             Name = name;
             Description = description;
             CreatedAt = createdAt;
+            CreatorId = creatorId;
         }
 
         [Key]
@@ -26,6 +26,9 @@ namespace DataAccessLayer
         public string Name { get; init; }
         public string Description { get; init; }
         public DateTime CreatedAt { get; init; }
+        [Required(ErrorMessage = "The CreatorId(userId) is required")]
+        [Range(1, int.MaxValue, ErrorMessage = "The CreatorId is should Not be negative value")]
+        public int CreatorId { get; init; }
     }
     public record RoomUserDto
     {
@@ -47,6 +50,8 @@ namespace DataAccessLayer
 
         Task<List<UserDto>> GetUsersDetailsDataInRoomByRoomIdAsync(int roomId);
         Task<List<MessageDto>> GetMessagesInRoomByRoomIdAsync(int roomId);
+        Task<List<RoomDto>> GetCurrentRoomsForCurrentUserPaginatedAsync(int pageNumber, int pageSize, int userId);
+        Task<List<RoomDto>> GetRoomsPaginatedAsync(int pageNumber, int pageSize);
     }
 
     public class RoomsRepository : IRoomsRepository
@@ -74,6 +79,84 @@ namespace DataAccessLayer
                 return new List<RoomDto>();
             }
         }
+        public async Task<List<RoomDto>> GetRoomsPaginatedAsync(int pageNumber, int pageSize)
+        {
+            try
+            {
+                const string sql = @"SELECT * FROM Rooms order by Id desc 
+                                    limit @pageSize
+                                    offset ((@pageNumber - 1)* @pageSize);";
+                var parameters = new
+                {
+                    pageNumber = pageNumber,
+                    pageSize = pageSize,
+                };
+                await using var conn = await _dataSource.OpenConnectionAsync();
+                var rooms = await conn.QueryAsync<RoomDto>(sql, parameters);
+                return rooms.ToList();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error fetching all rooms");
+                return new List<RoomDto>();
+            }
+        }
+        public async Task<List<UserDto>> GetUsersDetailsDataInRoomByRoomIdAsync(int roomId)
+        {
+            try
+            {
+                const string sql = @"select u.* from users u 
+                                inner join roomUsers rm on u.id = rm.UserId and rm.roomId = @roomId;";
+                await using var conn = await _dataSource.OpenConnectionAsync();
+                var usersLists = await conn.QueryAsync<UserDto>(sql, new { roomId });
+                return usersLists.ToList();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, $"error in GetUsersInRoomByRoomId for roomId: {roomId}");
+                return new List<UserDto>();
+            }
+        }
+        public async Task<List<MessageDto>> GetMessagesInRoomByRoomIdAsync(int roomId)
+        {
+            try
+            {
+                const string sql = @"select * from messages where messages.roomid  = @roomid ";
+                await using var conn = await _dataSource.OpenConnectionAsync();
+                var messagesList = await conn.QueryAsync<MessageDto>(sql, new { roomid = roomId });
+                return messagesList.ToList();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, $"error in GetUsersInRoomByRoomId for roomId: {roomId}");
+                return new List<MessageDto>();
+            }
+        }
+
+        public async Task<List<RoomDto>> GetCurrentRoomsForCurrentUserPaginatedAsync(int pageNumber, int pageSize, int userId)
+        {
+            try
+            {
+                const string sql = @"select r.* from rooms r  where r.creatorId = @creatorId 
+                                    order by r.id desc
+                                    limit @pageSize
+                                    offset ((@pageNumber - 1)* @pageSize);";
+                var parameters = new
+                {
+                    pageNumber = pageNumber,
+                    pageSize = pageSize,
+                    creatorId = userId
+                };
+                await using var conn = await _dataSource.OpenConnectionAsync();
+                var roomsList = await conn.QueryAsync<RoomDto>(sql, parameters);
+                return roomsList.ToList();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, $"error in GetCurrentRoomsForCurrentUserPaginatedAsync for userId: {userId}");
+                return new List<RoomDto>();
+            }
+        }
 
         public async Task<RoomDto?> GetRoomByIdAsync(int roomId)
         {
@@ -96,8 +179,8 @@ namespace DataAccessLayer
             try
             {
                 const string sql = @"
-                    INSERT INTO Rooms (Name, Description)
-                    VALUES (@Name, @Description)
+                    INSERT INTO Rooms (Name, Description,CreatorId)
+                    VALUES (@Name, @Description,@CreatorId)
                     RETURNING Id";
 
                 await using var conn = await _dataSource.OpenConnectionAsync();
@@ -220,37 +303,6 @@ namespace DataAccessLayer
             }
         }
 
-        public async Task<List<UserDto>> GetUsersDetailsDataInRoomByRoomIdAsync(int roomId)
-        {
-            try
-            {
-                const string sql = @"select u.* from users u 
-                                inner join roomUsers rm on u.id = rm.UserId and rm.roomId = @roomId;";
-                await using var conn = await _dataSource.OpenConnectionAsync();
-                var usersLists = await conn.QueryAsync<UserDto>(sql, new { roomId = roomId });
-                return usersLists.ToList();
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, $"error in GetUsersInRoomByRoomId for roomId: {roomId}");
-                return new List<UserDto>();
-            }
-        }
-        public async Task<List<MessageDto>> GetMessagesInRoomByRoomIdAsync(int roomId)
-        {
-            try
-            {
-                const string sql = @"select * from messages where messages.roomid  = @roomid ";
-                await using var conn = await _dataSource.OpenConnectionAsync();
-                var messagesList = await conn.QueryAsync<MessageDto>(sql, new { roomid = roomId });
-                return messagesList.ToList();
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, $"error in GetUsersInRoomByRoomId for roomId: {roomId}");
-                return new List<MessageDto>();
-            }
-        }
     }
 }
 

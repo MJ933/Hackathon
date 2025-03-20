@@ -329,6 +329,136 @@
   },
   {
     "ContainingType": "PresentationLayer.Controllers.InvitationsController",
+    "Method": "GetInvitationsPaginatedAsync",
+    "RelativePath": "api/Invitations/GetInvitationsPaginated",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pageNumber",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "pageSize",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[DataAccessLayer.InvitationDto, DataAccessLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 404
+      }
+    ]
+  },
+  {
+    "ContainingType": "PresentationLayer.Controllers.InvitationsController",
+    "Method": "GetReceivedInvitationsForUserPaginatedAsync",
+    "RelativePath": "api/Invitations/GetReceivedInvitationsForUserPaginated",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pageNumber",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "pageSize",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "UserId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[DataAccessLayer.InvitationDto, DataAccessLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 404
+      }
+    ]
+  },
+  {
+    "ContainingType": "PresentationLayer.Controllers.InvitationsController",
+    "Method": "GetSentInvitationsForUserPaginatedAsync",
+    "RelativePath": "api/Invitations/GetSentInvitationsForUserPaginated",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pageNumber",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "pageSize",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "UserId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[DataAccessLayer.InvitationDto, DataAccessLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 404
+      }
+    ]
+  },
+  {
+    "ContainingType": "PresentationLayer.Controllers.InvitationsController",
     "Method": "UpdateInvitation",
     "RelativePath": "api/Invitations/Update/{id}",
     "HttpMethod": "PUT",
@@ -895,13 +1025,13 @@
     "Parameters": [
       {
         "Name": "room",
-        "Type": "DataAccessLayer.RoomDto",
+        "Type": "DataAccessLayer.Productions.RoomDto",
         "IsRequired": true
       }
     ],
     "ReturnTypes": [
       {
-        "Type": "DataAccessLayer.RoomDto",
+        "Type": "DataAccessLayer.Productions.RoomDto",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -1015,7 +1145,7 @@
     "Parameters": [],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.List\u00601[[DataAccessLayer.RoomDto, DataAccessLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.List\u00601[[DataAccessLayer.Productions.RoomDto, DataAccessLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -1050,7 +1180,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "DataAccessLayer.RoomDto",
+        "Type": "DataAccessLayer.Productions.RoomDto",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -1066,6 +1196,51 @@
           "text/json"
         ],
         "StatusCode": 400
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 404
+      }
+    ]
+  },
+  {
+    "ContainingType": "PresentationLayer.Controllers.RoomsController",
+    "Method": "GetCurrentRoomsForCurrentUserAsync",
+    "RelativePath": "api/Rooms/GetCurrentRoomsForCurrentUser/{userId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pageNumber",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "pageSize",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "userId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[DataAccessLayer.Productions.RoomDto, DataAccessLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
       },
       {
         "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
@@ -1129,7 +1304,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.List\u00601[[DataAccessLayer.RoomUserDto, DataAccessLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.List\u00601[[DataAccessLayer.Productions.RoomUserDto, DataAccessLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -1198,13 +1373,13 @@
       },
       {
         "Name": "room",
-        "Type": "DataAccessLayer.RoomDto",
+        "Type": "DataAccessLayer.Productions.RoomDto",
         "IsRequired": true
       }
     ],
     "ReturnTypes": [
       {
-        "Type": "DataAccessLayer.RoomDto",
+        "Type": "DataAccessLayer.Productions.RoomDto",
         "MediaTypes": [
           "text/plain",
           "application/json",

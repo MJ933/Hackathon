@@ -31,7 +31,7 @@ namespace PresentationLayer.Controllers.Classes
                 issuer: jwtSettings.Issuer,
                 audience: jwtSettings.Audience,
                 claims: claims,
-                expires: DateTime.Now.AddMinutes(30),
+                expires: DateTime.UtcNow.AddMinutes(43200),
                 signingCredentials: credentials
             );
 

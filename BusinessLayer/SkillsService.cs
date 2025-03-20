@@ -15,7 +15,7 @@ namespace BusinessLayer
         Task<bool> RemoveUserSkillAsync(int userId, int skillId);
         Task<List<SkillDto>> GetSkillsByUserIdAsync(int userId);
         Task<List<UserDto>> GetUsersBySkillIdAsync(int skillId);
-
+        Task<List<SkillDto>> GetSkillsPaginatedAsync(int pageNumber, int pageSize);
     }
 
     public class SkillsService : ISkillsService
@@ -29,7 +29,8 @@ namespace BusinessLayer
 
         public async Task<List<SkillDto>> GetAllSkillsAsync() =>
             await _skillsRepository.GetAllSkillsAsync();
-
+        public async Task<List<SkillDto>> GetSkillsPaginatedAsync(int pageNumber, int pageSize) =>
+               await _skillsRepository.GetSkillsPaginatedAsync(pageNumber, pageSize);
         public async Task<SkillDto?> GetSkillByIdAsync(int skillId) =>
             await _skillsRepository.GetSkillByIdAsync(skillId);
 

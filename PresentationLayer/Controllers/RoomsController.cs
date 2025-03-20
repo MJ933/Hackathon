@@ -1,8 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using BusinessLayer;
-using DataAccessLayer;
 using Microsoft.AspNetCore.Authorization;
+using DataAccessLayer.Productions;
+using DataAccessLayer;
 
 namespace PresentationLayer.Controllers
 {
@@ -11,10 +12,12 @@ namespace PresentationLayer.Controllers
     public class RoomsController : ControllerBase
     {
         private readonly IRoomsService _roomsService;
+        private readonly IUsersService _usersService;
 
-        public RoomsController(IRoomsService service)
+        public RoomsController(IRoomsService roomService, IUsersService usersService)
         {
-            _roomsService = service;
+            _roomsService = roomService;
+            _usersService = usersService;
         }
 
         [HttpGet("GetAll")]
@@ -23,6 +26,17 @@ namespace PresentationLayer.Controllers
         public async Task<ActionResult<List<RoomDto>>> GetAllRooms()
         {
             var rooms = await _roomsService.GetAllRoomsAsync();
+            return rooms.Count == 0
+                ? NotFound("No rooms found")
+                : Ok(new { Message = "Rooms retrieved successfully", Data = rooms });
+        }
+
+        [HttpGet("GetRoomsPaginated")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<ActionResult<List<RoomDto>>> GetRoomsPaginated(int pageNumber = 1, int pageSize = 10)
+        {
+            var rooms = await _roomsService.GetRoomsPaginatedAsync(pageNumber, pageSize);
             return rooms.Count == 0
                 ? NotFound("No rooms found")
                 : Ok(new { Message = "Rooms retrieved successfully", Data = rooms });
@@ -42,6 +56,44 @@ namespace PresentationLayer.Controllers
                 ? NotFound($"Room {roomId} not found")
                 : Ok(new { Message = "Room retrieved successfully", Data = room });
         }
+        [Authorize]
+        [HttpGet("GetUsersDetailsDataInRoomByRoomId/{roomId}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<ActionResult<List<UserDto>>> GetUsersInRoomByRoomIdAsync(int roomId)
+        {
+            if (!await _roomsService.IsRoomExistsByIdAsync(roomId))
+                return NotFound($"Room {roomId} not found");
+
+            var users = await _roomsService.GetUsersDetailsDataInRoomByRoomIdAsync(roomId);
+            return Ok(new { Message = "Room users retrieved", Data = users });
+        }
+
+        [HttpGet("GetMessagesInRoomByRoomId/{roomId}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<ActionResult<List<MessageDto>>> GetMessagesInRoomByRoomIdAsync(int roomId)
+        {
+            if (!await _roomsService.IsRoomExistsByIdAsync(roomId))
+                return NotFound($"Room {roomId} not found");
+
+            var users = await _roomsService.GetMessagesInRoomByRoomIdAsync(roomId);
+            return Ok(new { Message = "Room Messages retrieved", Data = users });
+        }
+
+
+        [HttpGet("GetCurrentRoomsForCurrentUser/{userId}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<ActionResult<List<RoomDto>>> GetCurrentRoomsForCurrentUserAsync(int pageNumber, int pageSize, int userId)
+        {
+            if (!await _usersService.IsUserExistsByUserIDAsync(userId))
+                return NotFound($"User with {userId} not found");
+
+            var users = await _roomsService.GetCurrentRoomsForCurrentUserPaginatedAsync(pageNumber, pageSize, userId);
+            return Ok(new { Message = "Room Messages retrieved", Data = users });
+        }
+
 
         [Authorize]
         [HttpPost("CreateRoom")]
@@ -56,7 +108,7 @@ namespace PresentationLayer.Controllers
             if (newRoomId < 0)
                 return BadRequest("Failed to create room");
 
-            room = new RoomDto(newRoomId, room.Name, room.Description, DateTime.UtcNow);
+            room = new RoomDto(newRoomId, room.Name, room.Description, DateTime.UtcNow, room.CreatorId);
             return CreatedAtAction(nameof(GetRoomById),
                 new { roomId = room.Id },
                 new { Message = "Room created successfully", Data = room });
@@ -150,30 +202,6 @@ namespace PresentationLayer.Controllers
             return Ok(new { Message = $"User {userId} from Room {roomId} deleted successfully" });
         }
 
-        [Authorize]
-        [HttpGet("GetUsersDetailsDataInRoomByRoomId/{roomId}")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<ActionResult<List<UserDto>>> GetUsersInRoomByRoomIdAsync(int roomId)
-        {
-            if (!await _roomsService.IsRoomExistsByIdAsync(roomId))
-                return NotFound($"Room {roomId} not found");
-
-            var users = await _roomsService.GetUsersDetailsDataInRoomByRoomIdAsync(roomId);
-            return Ok(new { Message = "Room users retrieved", Data = users });
-        }
-
-        [HttpGet("GetMessagesInRoomByRoomId/{roomId}")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<ActionResult<List<MessageDto>>> GetMessagesInRoomByRoomIdAsync(int roomId)
-        {
-            if (!await _roomsService.IsRoomExistsByIdAsync(roomId))
-                return NotFound($"Room {roomId} not found");
-
-            var users = await _roomsService.GetMessagesInRoomByRoomIdAsync(roomId);
-            return Ok(new { Message = "Room Messages retrieved", Data = users });
-        }
 
     }
 }

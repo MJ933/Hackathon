@@ -35,6 +35,7 @@ namespace DataAccessLayer
         Task<bool> RemoveUserSkillAsync(int userId, int skillId);
         Task<List<SkillDto>> GetSkillsByUserIdAsync(int userId);
         Task<List<UserDto>> GetUsersBySkillIdAsync(int skillId);
+        Task<List<SkillDto>> GetSkillsPaginatedAsync(int pageNumber, int pageSize);
     }
     public class SkillsRepository : ISkillsRepository
     {
@@ -60,6 +61,27 @@ namespace DataAccessLayer
                 return new List<SkillDto>();
             }
         }
+        public async Task<List<SkillDto>> GetSkillsPaginatedAsync(int pageNumber, int pageSize)
+        {
+            try
+            {
+                const string sql = @"SELECT * FROM Skills
+                                    limit @pageSize
+                                    offset ((@pageNumber - 1)* @pageSize);";
+                var parameters = new
+                {
+                    pageNumber = pageNumber,
+                    pageSize = pageSize,
+                };
+                await using var conn = await _dataSource.OpenConnectionAsync();
+                return (await conn.QueryAsync<SkillDto>(sql, parameters)).ToList();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error in GetSkillsPaginatedAsync");
+                return new List<SkillDto>();
+            }
+        }
 
         public async Task<SkillDto?> GetSkillByIdAsync(int skillId)
         {
@@ -75,6 +97,45 @@ namespace DataAccessLayer
                 return null;
             }
         }
+        public async Task<List<SkillDto>> GetSkillsByUserIdAsync(int userId)
+        {
+            try
+            {
+                const string sql = @"
+                    SELECT s.* 
+                    FROM Skills s
+                    INNER JOIN UserSkills us ON s.Id = us.SkillId
+                    WHERE us.UserId = @UserId";
+
+                await using var conn = await _dataSource.OpenConnectionAsync();
+                var userSkills = await conn.QueryAsync<SkillDto>(sql, new { UserId = userId });
+                return userSkills.ToList();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, $"Error getting skills for user: {userId}");
+                return new List<SkillDto>();
+            }
+        }
+        public async Task<List<UserDto>> GetUsersBySkillIdAsync(int skillId)
+        {
+            try
+            {
+                const string sql = @"
+                    SELECT u.* 
+                    FROM Users u
+                    INNER JOIN UserSkills us ON u.Id = us.UserId
+                    WHERE us.SkillId = @SkillId";
+
+                await using var conn = await _dataSource.OpenConnectionAsync();
+                return (await conn.QueryAsync<UserDto>(sql, new { SkillId = skillId })).ToList();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, $"Error getting users for skill: {skillId}");
+                return new List<UserDto>();
+            }
+        }
 
         public async Task<int> AddSkillAsync(SkillDto skill)
         {
@@ -82,7 +143,7 @@ namespace DataAccessLayer
             {
                 const string sql = "INSERT INTO Skills (Name) VALUES (@Name) RETURNING Id";
                 await using var conn = await _dataSource.OpenConnectionAsync();
-                var insertedSkillID = await conn.ExecuteScalarAsync<int>(sql, new { Name = skill.Name });
+                var insertedSkillID = await conn.ExecuteScalarAsync<int>(sql, new { skill.Name });
                 return insertedSkillID;
             }
             catch (Exception ex)
@@ -98,7 +159,7 @@ namespace DataAccessLayer
             {
                 const string sql = "UPDATE Skills SET Name = @Name WHERE Id = @Id";
                 await using var conn = await _dataSource.OpenConnectionAsync();
-                var result = await conn.ExecuteAsync(sql, new { Id = skill.Id, Name = skill.Name });
+                var result = await conn.ExecuteAsync(sql, new { skill.Id, skill.Name });
                 return result > 0;
             }
             catch (Exception ex)
@@ -173,46 +234,7 @@ namespace DataAccessLayer
             }
         }
 
-        public async Task<List<SkillDto>> GetSkillsByUserIdAsync(int userId)
-        {
-            try
-            {
-                const string sql = @"
-                    SELECT s.* 
-                    FROM Skills s
-                    INNER JOIN UserSkills us ON s.Id = us.SkillId
-                    WHERE us.UserId = @UserId";
 
-                await using var conn = await _dataSource.OpenConnectionAsync();
-                var userSkills = await conn.QueryAsync<SkillDto>(sql, new { UserId = userId });
-                return userSkills.ToList();
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, $"Error getting skills for user: {userId}");
-                return new List<SkillDto>();
-            }
-        }
-
-        public async Task<List<UserDto>> GetUsersBySkillIdAsync(int skillId)
-        {
-            try
-            {
-                const string sql = @"
-                    SELECT u.* 
-                    FROM Users u
-                    INNER JOIN UserSkills us ON u.Id = us.UserId
-                    WHERE us.SkillId = @SkillId";
-
-                await using var conn = await _dataSource.OpenConnectionAsync();
-                return (await conn.QueryAsync<UserDto>(sql, new { SkillId = skillId })).ToList();
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, $"Error getting users for skill: {skillId}");
-                return new List<UserDto>();
-            }
-        }
     }
 
 

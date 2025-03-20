@@ -129,8 +129,8 @@ namespace DataAccessLayer
                     OR (UserId = @ConnectedUserId AND ConnectedUserId = @UserId)";
                 var parameters = new
                 {
-                    UserId = connection.UserId,
-                    ConnectedUserId = connection.ConnectedUserId,
+                    connection.UserId,
+                    connection.ConnectedUserId,
                     NewStatus = connection.Status
                 };
 

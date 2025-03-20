@@ -12,33 +12,42 @@ namespace BusinessLayer
         Task<bool> UpdateInvitationAsync(InvitationDto invitation);
         Task<bool> DeleteInvitationAsync(int invitationId);
         Task<bool> IsInvitationExistsByIdAsync(int invitationId);
+        Task<List<InvitationDto>> GetSentInvitationsForUserPaginatedAsync(int pageNumber, int pageSize, int currentUserId);
+        Task<List<InvitationDto>> GetReceivedInvitationsForUserPaginatedAsync(int pageNumber, int pageSize, int currentUserId);
+        Task<List<InvitationDto>> GetInvitationsPaginatedAsync(int pageNumber, int pageSize);
     }
 
     public class InvitationsService : IInvitationsService
     {
-        private readonly IInvitationsRepository _repository;
+        private readonly IInvitationsRepository _invitationRepository;
 
         public InvitationsService(IInvitationsRepository repository)
         {
-            _repository = repository;
+            _invitationRepository = repository;
         }
 
         public async Task<List<InvitationDto>> GetAllInvitationsAsync() =>
-            await _repository.GetAllInvitationsAsync();
+            await _invitationRepository.GetAllInvitationsAsync();
 
         public async Task<InvitationDto?> GetInvitationByIdAsync(int invitationId) =>
-            await _repository.GetInvitationByIdAsync(invitationId);
-
+            await _invitationRepository.GetInvitationByIdAsync(invitationId);
+        public async Task<List<InvitationDto>> GetInvitationsPaginatedAsync(int pageNumber, int pageSize) =>
+             await _invitationRepository.GetInvitationsPaginatedAsync(pageNumber, pageSize);
+        public async Task<List<InvitationDto>> GetSentInvitationsForUserPaginatedAsync(int pageNumber, int pageSize, int currentUserId) =>
+                await _invitationRepository.GetSentInvitationsForUserPaginatedAsync(pageNumber, pageSize, currentUserId);
+        public async Task<List<InvitationDto>> GetReceivedInvitationsForUserPaginatedAsync(int pageNumber, int pageSize, int currentUserId) =>
+                await _invitationRepository.GetReceivedInvitationsForUserPaginatedAsync(pageNumber, pageSize, currentUserId);
         public async Task<int> AddNewInvitationAsync(InvitationDto invitation) =>
-            await _repository.AddNewInvitationAsync(invitation);
+            await _invitationRepository.AddNewInvitationAsync(invitation);
 
         public async Task<bool> UpdateInvitationAsync(InvitationDto invitation) =>
-            await _repository.UpdateInvitationAsync(invitation);
+            await _invitationRepository.UpdateInvitationAsync(invitation);
 
         public async Task<bool> DeleteInvitationAsync(int invitationId) =>
-            await _repository.DeleteInvitationAsync(invitationId);
+            await _invitationRepository.DeleteInvitationAsync(invitationId);
 
         public async Task<bool> IsInvitationExistsByIdAsync(int invitationId) =>
-            await _repository.IsInvitationExistsByIdAsync(invitationId);
+            await _invitationRepository.IsInvitationExistsByIdAsync(invitationId);
+
     }
 }

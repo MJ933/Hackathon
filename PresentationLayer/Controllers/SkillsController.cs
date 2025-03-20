@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using BusinessLayer;
-using DataAccessLayer;
 using Microsoft.AspNetCore.Http;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
+using DataAccessLayer;
 
 namespace PresentationLayer.Controllers
 {
@@ -24,6 +24,16 @@ namespace PresentationLayer.Controllers
         public async Task<ActionResult<List<SkillDto>>> GetAllSkills()
         {
             var skills = await _skillsService.GetAllSkillsAsync();
+            return skills.Count == 0
+                ? NotFound("No skills found in the system")
+                : Ok(new { Message = "Skills retrieved successfully", Data = skills });
+        }
+        [HttpGet("GetSkillsPaginated", Name = "GetSkillsPaginated")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<ActionResult<List<SkillDto>>> GetSkillsPaginatedAsync(int pageNumber = 1, int pageSize = 10)
+        {
+            var skills = await _skillsService.GetSkillsPaginatedAsync(pageNumber, pageSize);
             return skills.Count == 0
                 ? NotFound("No skills found in the system")
                 : Ok(new { Message = "Skills retrieved successfully", Data = skills });
